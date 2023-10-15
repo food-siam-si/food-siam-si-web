@@ -10,7 +10,7 @@ const RestaurantDetailCard = (data: Restaurant) => {
 
   return (
     <Card sx={{ maxWidth: 1200 }}>
-      <CardMedia sx={{ height: 140 }} image={data.imageUrl} title={name} />
+      <CardMedia sx={{ height: 200 }} image={data.imageUrl} title={name} />
       <Stack divider={<Divider variant="middle" />}>
         <RestaurantSection {...data} />
         <MenuSection />
