@@ -1,7 +1,7 @@
-import { AppBar, Toolbar, Typography } from '@mui/material';
+import { AppBar, Container, Toolbar, Typography } from '@mui/material';
 import { PropsWithChildren } from 'react';
 
-import { ContentContainer, RootContainer } from './styled';
+import { RootContainer } from './styled';
 
 const Layout = ({ children }: PropsWithChildren) => {
   return (
@@ -13,7 +13,9 @@ const Layout = ({ children }: PropsWithChildren) => {
           </Typography>
         </Toolbar>
       </AppBar>
-      <ContentContainer>{children}</ContentContainer>
+      <Container maxWidth="md" sx={{ flexGrow: 1, py: 3 }}>
+        {children}
+      </Container>
       <div style={{ backgroundColor: 'red' }}>footer</div>
     </RootContainer>
   );

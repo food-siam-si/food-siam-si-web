@@ -1,7 +1,9 @@
-import { Card, CardMedia, Stack } from '@mui/material';
+import { Card, CardMedia, Divider, Stack } from '@mui/material';
 
 import { Restaurant } from '../../api/dto';
+import MenuSection from './components/MenuSection';
 import RestaurantSection from './components/RestaurantSection';
+import ReviewSection from './components/ReviewSection';
 
 const RestaurantDetailCard = (data: Restaurant) => {
   const { name } = data;
@@ -9,8 +11,10 @@ const RestaurantDetailCard = (data: Restaurant) => {
   return (
     <Card sx={{ maxWidth: 1200 }}>
       <CardMedia sx={{ height: 140 }} image={data.imageUrl} title={name} />
-      <Stack>
+      <Stack divider={<Divider variant="middle" />}>
         <RestaurantSection {...data} />
+        <MenuSection />
+        <ReviewSection />
       </Stack>
     </Card>
   );
