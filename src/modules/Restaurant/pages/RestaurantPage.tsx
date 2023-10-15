@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 
 import { Restaurant } from '../api/dto';
 import { RestaurantApi } from '../api/restaurantApi';
+import RestaurantDetailCard from '../components/RestaurantDetailCard';
 
 const RestaurantPage = () => {
   const params = useParams<{ id: string }>();
@@ -17,11 +18,7 @@ const RestaurantPage = () => {
 
   if (!data) return null;
 
-  return (
-    <>
-      Restaurant {params.id} {data.name}
-    </>
-  );
+  return <RestaurantDetailCard {...data} />;
 };
 
 export default RestaurantPage;

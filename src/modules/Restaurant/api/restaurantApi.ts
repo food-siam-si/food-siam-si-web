@@ -7,12 +7,13 @@ export class RestaurantApi {
   static async getById(_id: string): Promise<Restaurant> {
     return {
       name: 'Restaurant',
-      description: 'Restaurant description',
+      description:
+        'Restaurant description lorem ipsum dolor sit amet Restaurant description lorem ipsum dolor sit amet Restaurant description lorem ipsum dolor sit amet Restaurant description lorem ipsum dolor sit amet',
       phoneNumber: '0123456789',
       locationLat: 10.123456,
       locationLong: 10.123456,
       averagePrice: AveragePrice.HundredToTwoHundred,
-      imageUrl: 'https://picsum.photos/200/300',
+      imageUrl: 'https://picsum.photos/1600/900',
       restaurantType: [
         {
           id: 1,
