@@ -4,7 +4,7 @@ import { AveragePrice, Restaurant } from './dto';
 
 export class RestaurantApi {
   @handleError()
-  async Get(): Promise<Restaurant> {
+  static async getById(_id: string): Promise<Restaurant> {
     return {
       name: 'Restaurant',
       description: 'Restaurant description',
