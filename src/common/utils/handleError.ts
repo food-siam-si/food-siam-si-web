@@ -1,5 +1,9 @@
 import { AxiosError } from 'axios';
 import toast from 'react-hot-toast';
+export interface HandleErrorConfig {
+  overrideMessage?: Record<string, string>;
+  throwError?: boolean;
+}
 
 /**
  * This is a decorator for handling API error. If the error is from `axios` and have `response` field, it will handle error according to error code (specified below), otherwise it will redirect to `/500` page
@@ -25,7 +29,7 @@ import toast from 'react-hot-toast';
  * @param overrideMessage - overriding default behavior by showing toast message in the format of { [key: errorCode ]: message }
  * @param throwError - determine that this function will throw error or not
  */
-export function handleError(overrideMessage?: { [key: string]: string }, throwError?: boolean) {
+export function handleError({ overrideMessage, throwError }: HandleErrorConfig) {
   return function (_target: unknown, _propertyKey: string, descriptor: PropertyDescriptor) {
     const originalMethod = descriptor.value;
 
