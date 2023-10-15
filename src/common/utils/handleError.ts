@@ -29,7 +29,7 @@ export interface HandleErrorConfig {
  * @param overrideMessage - overriding default behavior by showing toast message in the format of { [key: errorCode ]: message }
  * @param throwError - determine that this function will throw error or not
  */
-export function handleError({ overrideMessage, throwError }: HandleErrorConfig) {
+export function handleError({ overrideMessage, throwError }: HandleErrorConfig | undefined = {}) {
   return function (_target: unknown, _propertyKey: string, descriptor: PropertyDescriptor) {
     const originalMethod = descriptor.value;
 
