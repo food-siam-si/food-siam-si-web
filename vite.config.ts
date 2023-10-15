@@ -1,4 +1,4 @@
-import react from '@vitejs/plugin-react-swc';
+import react from '@vitejs/plugin-react';
 import { defineConfig } from 'vite';
 import svgrPlugin from 'vite-plugin-svgr';
 import viteTsconfigPaths from 'vite-tsconfig-paths';
@@ -8,5 +8,16 @@ export default defineConfig({
   build: {
     outDir: 'build',
   },
-  plugins: [react(), viteTsconfigPaths(), svgrPlugin()],
+  plugins: [
+    react({
+      babel: {
+        plugins: [
+          ['@babel/plugin-proposal-decorators', { legacy: true }],
+          ['@babel/plugin-proposal-class-properties', { loose: true }],
+        ],
+      },
+    }),
+    viteTsconfigPaths(),
+    svgrPlugin(),
+  ],
 });
