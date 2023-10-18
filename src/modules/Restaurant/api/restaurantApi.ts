@@ -1,6 +1,6 @@
 import { handleError } from '@/common/utils/handleError';
 
-import { AveragePrice, Restaurant } from './dto';
+import { AveragePrice, Restaurant, RestaurantType } from './dto';
 
 export class RestaurantApi {
   @handleError()
@@ -25,5 +25,19 @@ export class RestaurantApi {
         },
       ],
     };
+  }
+
+  @handleError()
+  static async getTypes(): Promise<RestaurantType[]> {
+    return [
+      {
+        id: 1,
+        name: 'Restaurant type 1',
+      },
+      {
+        id: 2,
+        name: 'Restaurant type 2',
+      },
+    ];
   }
 }
