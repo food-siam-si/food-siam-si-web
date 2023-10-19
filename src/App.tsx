@@ -2,6 +2,7 @@ import './index.css';
 
 import { ThemeProvider } from '@mui/material';
 import { Suspense } from 'react';
+import { Toaster } from 'react-hot-toast';
 import { BrowserRouter } from 'react-router-dom';
 
 import Layout from './common/components/Layout';
@@ -16,6 +17,7 @@ const App = () => {
         <ThemeProvider theme={theme}>
           <Layout>
             <UserProvider>
+              <Toaster />
               <Routing />
             </UserProvider>
           </Layout>

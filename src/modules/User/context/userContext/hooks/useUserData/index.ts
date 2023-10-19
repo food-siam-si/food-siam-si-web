@@ -8,7 +8,7 @@ const useUserData = () => {
   const [isLoading, setLoading] = useState(true);
 
   const refetch = useCallback(async () => {
-    const res = await AuthApi.getUser();
+    const res = await AuthApi.get();
     setUser(res);
     setLoading(false);
   }, []);

@@ -1,6 +1,6 @@
 import { handleError } from '@/common/utils/handleError';
 
-import type { GetCurrentUserResponse, LoginRequest, LoginResponse } from './dto';
+import type { CreateUserRequest, GetCurrentUserResponse, LoginRequest, LoginResponse } from './dto';
 import { UserType } from './dto';
 
 export class AuthApi {
@@ -12,11 +12,14 @@ export class AuthApi {
   }
 
   @handleError()
-  static async getUser(): Promise<GetCurrentUserResponse | null> {
+  static async get(): Promise<GetCurrentUserResponse | null> {
     return {
       role: UserType.Owner,
       username: 'PKhing',
       id: 1,
     };
   }
+
+  @handleError()
+  static async create(data: CreateUserRequest): Promise<void> {}
 }

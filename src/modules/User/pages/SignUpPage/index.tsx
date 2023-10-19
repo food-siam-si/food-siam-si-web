@@ -2,15 +2,18 @@ import { Button, Link, Paper, Stack, Typography } from '@mui/material';
 import { FormContainer, RadioButtonGroup, TextFieldElement } from 'react-hook-form-mui';
 
 import { UserType } from '../../api/dto';
+import useSignUpForm from './useSignUpForm';
 
 const SignUpPage = () => {
+  const { onSubmit, methods } = useSignUpForm();
+
   return (
     <>
       <Typography variant="h4" color="primary">
         Register
       </Typography>
       <Paper sx={{ p: 2, m: 2, minWidth: 'min(90%,350px)' }}>
-        <FormContainer>
+        <FormContainer formContext={methods} handleSubmit={onSubmit}>
           <Stack gap={2}>
             <RadioButtonGroup
               label="Account Type"
@@ -29,9 +32,10 @@ const SignUpPage = () => {
             />
             <TextFieldElement name="email" label="Email" required />
             <TextFieldElement name="username" label="Username" required />
-            <TextFieldElement name="password" label="Password" required />
+            <TextFieldElement name="password" label="Password" required type="password" />
+            <TextFieldElement name="confirmPassword" label="Confirm Password" required type="password" />
             <Button type="submit" variant="contained" sx={{ alignSelf: 'center' }} fullWidth>
-              SIGN Up
+              Sign Up
             </Button>
           </Stack>
         </FormContainer>
