@@ -13,10 +13,19 @@ const Layout = ({ children }: PropsWithChildren) => {
           </Typography>
         </Toolbar>
       </AppBar>
-      <Container maxWidth="md" sx={{ flexGrow: 1, py: 3 }}>
+      <Container
+        maxWidth="md"
+        sx={{
+          display: 'flex',
+          flexDirection: 'column',
+          flexGrow: 1,
+          py: 3,
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}
+      >
         {children}
       </Container>
-      <div style={{ backgroundColor: 'red' }}>footer</div>
     </RootContainer>
   );
 };
