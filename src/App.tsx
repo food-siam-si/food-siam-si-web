@@ -6,6 +6,7 @@ import { BrowserRouter } from 'react-router-dom';
 
 import Layout from './common/components/Layout';
 import { theme } from './common/config/theme';
+import { UserProvider } from './modules/User/context/userContext';
 import Routing from './routes';
 
 const App = () => {
@@ -14,7 +15,9 @@ const App = () => {
       <BrowserRouter>
         <ThemeProvider theme={theme}>
           <Layout>
-            <Routing />
+            <UserProvider>
+              <Routing />
+            </UserProvider>
           </Layout>
         </ThemeProvider>
       </BrowserRouter>
