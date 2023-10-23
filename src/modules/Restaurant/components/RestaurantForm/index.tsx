@@ -20,7 +20,7 @@ const RestaurantForm = ({ initialData }: RestaurantFormProps) => {
   if (!types) return null;
 
   return (
-    <Paper sx={{ maxWidth: 1200, p: 2 }}>
+    <Paper sx={{ maxWidth: 1200, minWidth: 'min(1200px, 100%)', boxSizing: 'border-box', p: 2 }}>
       <Typography variant="h4" sx={{ mb: 2 }}>
         Edit Restaurant
       </Typography>
@@ -29,7 +29,7 @@ const RestaurantForm = ({ initialData }: RestaurantFormProps) => {
           <TextFieldElement name="name" label="Name" required />
           <TextFieldElement name="description" label="Description" required multiline rows={3} />
           <TextFieldElement name="imageUrl" label="Restarant Image Url" required />
-          <Stack direction="row" gap={2}>
+          <Stack direction={{ md: 'row', xs: 'column' }} gap={2}>
             <SelectElement name="averagePrice" label="Average Price" required options={AVERAGE_PRICE} fullWidth />
             <MultiSelectElement
               itemKey="id"
@@ -45,7 +45,7 @@ const RestaurantForm = ({ initialData }: RestaurantFormProps) => {
             Contact Info
           </Typography>
           <TextFieldElement name="phoneNumber" label="Phone Number" required />
-          <Stack direction="row" gap={2}>
+          <Stack direction={{ md: 'row', xs: 'column' }} gap={2}>
             <TextFieldElement name="locationLat" label="Latitude" required fullWidth />
             <TextFieldElement name="locationLong" label="Longtitude" required fullWidth />
           </Stack>

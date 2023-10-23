@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react';
+import { Navigate } from 'react-router-dom';
 
 import { Restaurant } from '../api/dto';
 import { RestaurantApi } from '../api/restaurantApi';
-import RestaurantForm from '../components/RestaurantForm';
+import RestaurantDetailCard from '../components/RestaurantDetailCard';
 
-const EditRestaurantPage = () => {
+const RestaurantPage = () => {
   const [data, setData] = useState<Restaurant | null>();
 
   useEffect(() => {
@@ -14,8 +15,10 @@ const EditRestaurantPage = () => {
     fetchData();
   }, []);
 
-  if (data === undefined) return null;
-  return <RestaurantForm initialData={data} />;
+  if (data === null) return <Navigate to="/restaurant/edit" replace={true} />;
+  if (!data) return null;
+
+  return <RestaurantDetailCard {...data} />;
 };
 
-export default EditRestaurantPage;
+export default RestaurantPage;

@@ -53,7 +53,7 @@ const RestaurantSection = (data: Restaurant) => {
         <DetailChip label="Average Price" Icon={AttachMoneyRoundedIcon} value={parseAveragePrice(averagePrice)} />
         <DetailChip label="Phone Number" Icon={PhoneRoundedIcon} value={phoneNumber} />
       </Stack>
-      <Stack direction="row" spacing={1} flexWrap="wrap" sx={{ mb: 3 }}>
+      <Stack direction="row" columnGap={1} rowGap={0.5} flexWrap="wrap" sx={{ mb: 3 }}>
         {restaurantType.map(({ id, name }) => (
           <Chip key={id} label={name} size="small" />
         ))}
