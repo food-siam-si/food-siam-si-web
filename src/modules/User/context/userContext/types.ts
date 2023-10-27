@@ -1,4 +1,4 @@
-import { GetCurrentUserResponse } from '../../api/dto';
+import { GetCurrentUserResponse } from 'modules/User/api/dto';
 
 export interface IUserContext {
   user: GetCurrentUserResponse | null;
