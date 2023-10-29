@@ -2,10 +2,12 @@ import './index.css';
 
 import { ThemeProvider } from '@mui/material';
 import { Suspense } from 'react';
+import { Toaster } from 'react-hot-toast';
 import { BrowserRouter } from 'react-router-dom';
 
 import Layout from './common/components/Layout';
 import { theme } from './common/config/theme';
+import { UserProvider } from './modules/User/context/userContext';
 import Routing from './routes';
 
 const App = () => {
@@ -14,7 +16,10 @@ const App = () => {
       <BrowserRouter>
         <ThemeProvider theme={theme}>
           <Layout>
-            <Routing />
+            <UserProvider>
+              <Toaster />
+              <Routing />
+            </UserProvider>
           </Layout>
         </ThemeProvider>
       </BrowserRouter>
