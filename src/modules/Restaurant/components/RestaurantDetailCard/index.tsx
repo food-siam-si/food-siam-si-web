@@ -1,9 +1,10 @@
 import { Card, CardMedia, Divider, Stack } from '@mui/material';
 
+import ReviewSection from '@/modules/Review/components/ReviewSection';
+
 import { Restaurant } from '../../api/dto';
 import MenuSection from './components/MenuSection';
 import RestaurantSection from './components/RestaurantSection';
-import ReviewSection from './components/ReviewSection';
 
 const RestaurantDetailCard = (data: Restaurant) => {
   const { name } = data;
@@ -14,7 +15,7 @@ const RestaurantDetailCard = (data: Restaurant) => {
       <Stack divider={<Divider variant="middle" />}>
         <RestaurantSection {...data} />
         <MenuSection />
-        <ReviewSection />
+        <ReviewSection restaurantId={data.id} />
       </Stack>
     </Card>
   );
