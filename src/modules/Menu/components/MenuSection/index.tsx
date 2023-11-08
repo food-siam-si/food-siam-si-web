@@ -24,7 +24,9 @@ const MenuSection = ({ restaurantId }: MenuSectionProps) => {
         <Typography variant="h5" sx={{ flexGrow: 1 }}>
           Recommended Menu
         </Typography>
-        <Button variant="text"> See All</Button>
+        <Button variant="text" href={`/restaurants/${restaurantId}/menu`}>
+          See All
+        </Button>
       </Stack>
       <Stack direction="row" gap={2} flexWrap="wrap">
         {menu.map((item) => (

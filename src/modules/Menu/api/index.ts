@@ -34,6 +34,10 @@ const MOCK_MENU = [
         id: 1,
         title: 'title',
       },
+      {
+        id: 2,
+        title: 'title2',
+      },
     ],
   },
 ];
