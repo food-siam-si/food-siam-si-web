@@ -15,10 +15,10 @@ const RestaurantPage = () => {
     fetchData();
   }, []);
 
-  if (data === null) return <Navigate to="/restaurant/edit" replace={true} />;
+  if (data === null) return <Navigate to="/manage/restaurant/edit" replace={true} />;
   if (!data) return null;
 
-  return <RestaurantDetailCard {...data} />;
+  return <RestaurantDetailCard restaurant={data} isOwner />;
 };
 
 export default RestaurantPage;

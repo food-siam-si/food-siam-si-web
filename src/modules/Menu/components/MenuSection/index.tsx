@@ -6,7 +6,7 @@ import { Menu } from '../../api/dto';
 import MenuCard from '../MenuCard';
 import { MenuSectionProps } from './types';
 
-const MenuSection = ({ restaurantId }: MenuSectionProps) => {
+const MenuSection = ({ restaurantId, seeAllLink }: MenuSectionProps) => {
   const [menu, setMenu] = useState<Menu[]>();
 
   useEffect(() => {
@@ -24,7 +24,7 @@ const MenuSection = ({ restaurantId }: MenuSectionProps) => {
         <Typography variant="h5" sx={{ flexGrow: 1 }}>
           Recommended Menu
         </Typography>
-        <Button variant="text" href={`/restaurants/${restaurantId}/menu`}>
+        <Button variant="text" href={seeAllLink}>
           See All
         </Button>
       </Stack>

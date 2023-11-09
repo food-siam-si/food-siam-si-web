@@ -18,7 +18,7 @@ const RestaurantPage = () => {
 
   if (!data) return null;
 
-  return <RestaurantDetailCard {...data} />;
+  return <RestaurantDetailCard restaurant={data} />;
 };
 
 export default RestaurantPage;

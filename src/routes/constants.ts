@@ -19,8 +19,9 @@ export const ROUTING_PROPS: RouteProps[] = [
   { path: '/register', Component: SignUpPage },
 
   // owner
-  { path: '/restaurant', Component: OwnerRestaurantPage },
-  { path: '/restaurant/edit', Component: EditRestaurantPage },
+  { path: '/manage/restaurant', Component: OwnerRestaurantPage },
+  { path: '/manage/restaurant/edit', Component: EditRestaurantPage },
+  // {path:'/manage/menu', Component: MenuPage}
 
   // customer
   { path: '/restaurants/:id', Component: RestaurantPage },
