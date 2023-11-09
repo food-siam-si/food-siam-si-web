@@ -50,7 +50,7 @@ const RandomModal = ({ open, onClose, restaurant }: RandomModalProps) => {
                 height: '50px',
               }}
             />
-            <Typography variant="h5" sx={{ position: 'absolute', top: 0, mx: 1 }} color="white">
+            <Typography variant="h5" sx={{ position: 'absolute', top: 0, mx: 1, my: 0.5 }} color="white">
               {restaurant.name}
             </Typography>
             <Chip

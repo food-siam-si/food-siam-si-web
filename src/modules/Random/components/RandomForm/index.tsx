@@ -6,9 +6,11 @@ import { MenuType } from '@/modules/Menu/api/dto';
 import { RestaurantType } from '@/modules/Restaurant/api/dto';
 
 import { RandomFormProps } from './types';
+import useRandomForm from './useRandomForm';
 
 const RandomForm = ({ fetchTypes, handleSubmit, label }: RandomFormProps) => {
   const [types, setTypes] = useState<RestaurantType[] | MenuType[]>();
+  const { methods, onSubmit } = useRandomForm(handleSubmit);
   useEffect(() => {
     const fetch = async () => {
       setTypes(await fetchTypes());
@@ -19,7 +21,7 @@ const RandomForm = ({ fetchTypes, handleSubmit, label }: RandomFormProps) => {
   if (!types) return null;
 
   return (
-    <FormContainer onSuccess={(data) => handleSubmit(data.types)}>
+    <FormContainer formContext={methods} handleSubmit={onSubmit}>
       <Stack>
         <CheckboxButtonGroup
           name="types"
