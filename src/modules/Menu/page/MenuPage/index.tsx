@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
+import PageGuard from '@/modules/User/components/PageGuard';
+
 import { MenuApi } from '../../api';
 import { Menu } from '../../api/dto';
 import MenuList from '../../components/MenuList';
@@ -20,7 +22,11 @@ const MenuPage = () => {
 
   if (!menu) return null;
 
-  return <MenuList menu={menu} />;
+  return (
+    <PageGuard allowCustomer>
+      <MenuList menu={menu} />
+    </PageGuard>
+  );
 };
 
 export default MenuPage;

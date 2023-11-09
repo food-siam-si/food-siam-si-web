@@ -3,6 +3,7 @@ import { useState } from 'react';
 
 import { Restaurant } from '@/modules/Restaurant/api/dto';
 import { RestaurantApi } from '@/modules/Restaurant/api/restaurantApi';
+import PageGuard from '@/modules/User/components/PageGuard';
 
 import RandomForm from '../../components/RandomForm';
 import RandomModal from '../../components/RandomModal';
@@ -16,32 +17,34 @@ const RandomPage = () => {
   };
 
   return (
-    <Paper
-      sx={{
-        p: 2,
-        m: 2,
-        minWidth: 'min(90%,500px)',
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'stretch',
-      }}
-    >
-      <Typography variant="h4" sx={{ textAlign: 'center' }}>
-        Random Restaurant
-      </Typography>
-
-      <img src="./siamsi.svg" style={{ color: 'red', margin: '20px', height: '100px' }} />
-
-      <RandomForm fetchTypes={RestaurantApi.getTypes} handleSubmit={handleSubmit} label="Restaurant" />
-      <RandomModal
-        open={open}
-        onClose={() => {
-          setOpen(false);
-          setRestaurant(undefined);
+    <PageGuard allowCustomer>
+      <Paper
+        sx={{
+          p: 2,
+          m: 2,
+          minWidth: 'min(90%,500px)',
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'stretch',
         }}
-        restaurant={restaurant}
-      />
-    </Paper>
+      >
+        <Typography variant="h4" sx={{ textAlign: 'center' }}>
+          Random Restaurant
+        </Typography>
+
+        <img src="./siamsi.svg" style={{ color: 'red', margin: '20px', height: '100px' }} />
+
+        <RandomForm fetchTypes={RestaurantApi.getTypes} handleSubmit={handleSubmit} label="Restaurant" />
+        <RandomModal
+          open={open}
+          onClose={() => {
+            setOpen(false);
+            setRestaurant(undefined);
+          }}
+          restaurant={restaurant}
+        />
+      </Paper>
+    </PageGuard>
   );
 };
 

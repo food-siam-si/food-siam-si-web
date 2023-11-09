@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 import { Navigate } from 'react-router-dom';
 
+import PageGuard from '@/modules/User/components/PageGuard';
+
 import { Restaurant } from '../api/dto';
 import { RestaurantApi } from '../api/restaurantApi';
 import RestaurantDetailCard from '../components/RestaurantDetailCard';
@@ -18,7 +20,11 @@ const RestaurantPage = () => {
   if (data === null) return <Navigate to="/manage/restaurant/edit" replace={true} />;
   if (!data) return null;
 
-  return <RestaurantDetailCard restaurant={data} isOwner />;
+  return (
+    <PageGuard allowOwner>
+      <RestaurantDetailCard restaurant={data} isOwner />
+    </PageGuard>
+  );
 };
 
 export default RestaurantPage;

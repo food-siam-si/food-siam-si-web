@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
 
+import PageGuard from '@/modules/User/components/PageGuard';
+
 import { Restaurant } from '../api/dto';
 import { RestaurantApi } from '../api/restaurantApi';
 import RestaurantForm from '../components/RestaurantForm';
@@ -15,7 +17,11 @@ const EditRestaurantPage = () => {
   }, []);
 
   if (data === undefined) return null;
-  return <RestaurantForm initialData={data} />;
+  return (
+    <PageGuard allowOwner>
+      <RestaurantForm initialData={data} />
+    </PageGuard>
+  );
 };
 
 export default EditRestaurantPage;
