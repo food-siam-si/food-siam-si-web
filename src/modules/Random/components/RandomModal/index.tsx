@@ -69,7 +69,7 @@ const RandomModal = ({ open, onClose, restaurant }: RandomModalProps) => {
           </Paper>
         </Link>
         {menu ? (
-          <FullMenuCard {...menu} />
+          <FullMenuCard menu={menu} />
         ) : (
           <>
             <Divider />

@@ -19,7 +19,7 @@ const EditRestaurantPage = () => {
   if (data === undefined) return null;
   return (
     <PageGuard allowOwner>
-      <RestaurantForm initialData={data} />
+      <RestaurantForm initialData={data ? data : undefined} />
     </PageGuard>
   );
 };

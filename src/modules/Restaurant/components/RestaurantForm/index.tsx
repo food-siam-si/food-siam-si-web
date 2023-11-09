@@ -6,9 +6,12 @@ import { RestaurantType } from '../../api/dto';
 import { RestaurantApi } from '../../api/restaurantApi';
 import { AVERAGE_PRICE } from '../../constants';
 import { RestaurantFormProps } from './types';
+import useRestaurantForm from './useRestaurantForm';
 
 const RestaurantForm = ({ initialData }: RestaurantFormProps) => {
   const [types, setTypes] = useState<RestaurantType[]>();
+
+  const { methods, onSubmit } = useRestaurantForm(initialData);
 
   useEffect(() => {
     const fetchTypes = async () => {
@@ -24,7 +27,7 @@ const RestaurantForm = ({ initialData }: RestaurantFormProps) => {
       <Typography variant="h4" sx={{ mb: 2 }}>
         Edit Restaurant
       </Typography>
-      <FormContainer defaultValues={initialData} onSuccess={(data) => console.log(data)}>
+      <FormContainer formContext={methods} handleSubmit={onSubmit}>
         <Stack gap={2}>
           <TextFieldElement name="name" label="Name" required />
           <TextFieldElement name="description" label="Description" required multiline rows={3} />
