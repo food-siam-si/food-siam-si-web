@@ -72,7 +72,13 @@ export class MenuApi {
     return MOCK_MENU[0];
   }
 
+  @handleError()
   static async getCurrent(): Promise<Menu[]> {
     return MOCK_MENU;
+  }
+
+  @handleError()
+  static async getById(id: number): Promise<Menu> {
+    return MOCK_MENU[0];
   }
 }
