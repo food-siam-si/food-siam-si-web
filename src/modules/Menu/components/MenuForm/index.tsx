@@ -5,8 +5,11 @@ import { CheckboxElement, FormContainer, MultiSelectElement, TextFieldElement } 
 import { MenuApi } from '../../api';
 import { MenuType } from '../../api/dto';
 import { MenuFormProps } from './types';
+import useMenuForm from './useMenuForm';
 
 const MenuForm = ({ initialData }: MenuFormProps) => {
+  const { methods, onSubmit } = useMenuForm(initialData);
+
   const [types, setTypes] = useState<MenuType[]>();
 
   useEffect(() => {
@@ -23,14 +26,7 @@ const MenuForm = ({ initialData }: MenuFormProps) => {
       <Typography variant="h4" sx={{ mb: 2 }}>
         Edit Menu
       </Typography>
-      <FormContainer
-        defaultValues={{
-          ...initialData,
-          addons: initialData?.addons.join(', '),
-          type: initialData?.type.map((item) => item.id),
-        }}
-        onSuccess={(data) => console.log(data)}
-      >
+      <FormContainer formContext={methods} handleSubmit={onSubmit}>
         <Stack gap={2}>
           <CheckboxElement label="Is Recommended" name="isRecommended" />
           <TextFieldElement name="title" label="Name" required />
