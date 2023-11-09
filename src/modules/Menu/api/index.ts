@@ -1,6 +1,6 @@
 import { handleError } from '@/common/utils/handleError';
 
-import { Menu } from './dto';
+import { Menu, MenuType } from './dto';
 
 const MOCK_MENU = [
   {
@@ -16,7 +16,7 @@ const MOCK_MENU = [
     type: [
       {
         id: 1,
-        title: 'title',
+        name: 'title',
       },
     ],
   },
@@ -32,11 +32,11 @@ const MOCK_MENU = [
     type: [
       {
         id: 1,
-        title: 'title',
+        name: 'title',
       },
       {
         id: 2,
-        title: 'title2',
+        name: 'title2',
       },
     ],
   },
@@ -51,5 +51,24 @@ export class MenuApi {
   @handleError()
   static async getRecommended(restaurantId: number): Promise<Menu[]> {
     return MOCK_MENU;
+  }
+
+  @handleError()
+  static async getTypes(): Promise<MenuType[]> {
+    return [
+      {
+        id: 1,
+        name: 'title',
+      },
+      {
+        id: 2,
+        name: 'title2',
+      },
+    ];
+  }
+
+  @handleError()
+  static async random(types: number[]): Promise<Menu> {
+    return MOCK_MENU[0];
   }
 }

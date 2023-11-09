@@ -16,8 +16,8 @@ const FullMenuCard = (menu: Menu) => {
           <Stack direction="row" gap={1} mb={0.5} alignItems="center">
             <Typography variant="h6">{title}</Typography>
             <Stack direction="row" gap={0.75}>
-              {type.map(({ id, title }) => (
-                <Chip key={id} label={title} size="small" />
+              {type.map(({ id, name }) => (
+                <Chip key={id} label={name} size="small" />
               ))}
             </Stack>
           </Stack>

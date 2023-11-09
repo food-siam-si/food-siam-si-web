@@ -45,4 +45,8 @@ export class RestaurantApi {
       },
     ];
   }
+
+  static async random(types: number[]): Promise<Restaurant> {
+    return MOCK;
+  }
 }
