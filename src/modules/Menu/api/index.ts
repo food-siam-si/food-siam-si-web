@@ -71,4 +71,8 @@ export class MenuApi {
   static async random(types: number[]): Promise<Menu> {
     return MOCK_MENU[0];
   }
+
+  static async getCurrent(): Promise<Menu[]> {
+    return MOCK_MENU;
+  }
 }

@@ -1,8 +1,9 @@
-import { Card, CardContent, CardMedia, Chip, Stack, Typography } from '@mui/material';
+import CreateIcon from '@mui/icons-material/Create';
+import { Card, CardContent, CardMedia, Chip, IconButton, Stack, Typography } from '@mui/material';
 
-import { Menu } from '../../api/dto';
+import { FullMenuCardProps } from './types';
 
-const FullMenuCard = (menu: Menu) => {
+const FullMenuCard = ({ menu, enableEdit }: FullMenuCardProps) => {
   const { imageUrl, title, description, type, addons } = menu;
   return (
     <Card sx={{ display: 'flex', flexDirection: { xs: 'column', sm: 'row' }, width: '100%' }}>
@@ -20,6 +21,22 @@ const FullMenuCard = (menu: Menu) => {
                 <Chip key={id} label={name} size="small" />
               ))}
             </Stack>
+            <div style={{ flexGrow: 1 }} />
+            {enableEdit && (
+              <IconButton
+                href={`/manage/menu/${menu.id}/edit`}
+                size="small"
+                sx={{
+                  backgroundColor: 'primary.main',
+                  color: 'white',
+                  ':hover': {
+                    backgroundColor: 'primary.dark',
+                  },
+                }}
+              >
+                <CreateIcon />
+              </IconButton>
+            )}
           </Stack>
           <Typography variant="body2" color="text.secondary" sx={{ flexGrow: 1 }}>
             {description}

@@ -5,7 +5,7 @@ import { MenuApi } from '../../api';
 import { Menu } from '../../api/dto';
 import MenuList from '../../components/MenuList';
 
-const MenuPage = () => {
+const OwnerMenuPage = () => {
   const params = useParams<{ id: string }>();
   const { id: restaurantId } = params;
 
@@ -13,14 +13,14 @@ const MenuPage = () => {
 
   useEffect(() => {
     const fetch = async () => {
-      setMenu(await MenuApi.get(Number(restaurantId || '0')));
+      setMenu(await MenuApi.getCurrent());
     };
     fetch();
   }, [restaurantId]);
 
   if (!menu) return null;
 
-  return <MenuList menu={menu} />;
+  return <MenuList menu={menu} isOwner />;
 };
 
-export default MenuPage;
+export default OwnerMenuPage;

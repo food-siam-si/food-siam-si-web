@@ -2,6 +2,7 @@ import { RouteProps } from 'react-router-dom';
 
 import LandingPage from '@/modules/Landing/pages/LandingPage';
 import MenuPage from '@/modules/Menu/page/MenuPage';
+import OwnerMenuPage from '@/modules/Menu/page/OwnerMenuPage';
 import RandomPage from '@/modules/Random/pages/RandomPage';
 import EditRestaurantPage from '@/modules/Restaurant/pages/EditRestaurantPage';
 import OwnerRestaurantPage from '@/modules/Restaurant/pages/OwnerRestaurantPage';
@@ -21,7 +22,7 @@ export const ROUTING_PROPS: RouteProps[] = [
   // owner
   { path: '/manage/restaurant', Component: OwnerRestaurantPage },
   { path: '/manage/restaurant/edit', Component: EditRestaurantPage },
-  // {path:'/manage/menu', Component: MenuPage}
+  { path: '/manage/menu', Component: OwnerMenuPage },
 
   // customer
   { path: '/restaurants/:id', Component: RestaurantPage },
