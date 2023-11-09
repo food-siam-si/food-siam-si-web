@@ -1,9 +1,10 @@
 import { RouteProps } from 'react-router-dom';
 
 import LandingPage from '@/modules/Landing/pages/LandingPage';
+import CreateMenuPage from '@/modules/Menu/page/CreateMenuPage';
+import EditMenuPage from '@/modules/Menu/page/EditMenuPage';
 import MenuPage from '@/modules/Menu/page/MenuPage';
 import OwnerMenuPage from '@/modules/Menu/page/OwnerMenuPage';
-import EditMenuPage from '@/modules/Random/pages/EditMenuPage';
 import RandomPage from '@/modules/Random/pages/RandomPage';
 import EditRestaurantPage from '@/modules/Restaurant/pages/EditRestaurantPage';
 import OwnerRestaurantPage from '@/modules/Restaurant/pages/OwnerRestaurantPage';
@@ -25,6 +26,7 @@ export const ROUTING_PROPS: RouteProps[] = [
   { path: '/manage/restaurant/edit', Component: EditRestaurantPage },
   { path: '/manage/menu', Component: OwnerMenuPage },
   { path: '/manage/menu/:id/edit', Component: EditMenuPage },
+  { path: '/manage/menu/create', Component: CreateMenuPage },
 
   // customer
   { path: '/restaurants/:id', Component: RestaurantPage },

@@ -24,7 +24,11 @@ const MenuForm = ({ initialData }: MenuFormProps) => {
         Edit Menu
       </Typography>
       <FormContainer
-        defaultValues={{ ...initialData, addons: initialData?.addons.join(', ') }}
+        defaultValues={{
+          ...initialData,
+          addons: initialData?.addons.join(', '),
+          type: initialData?.type.map((item) => item.id),
+        }}
         onSuccess={(data) => console.log(data)}
       >
         <Stack gap={2}>
@@ -38,7 +42,7 @@ const MenuForm = ({ initialData }: MenuFormProps) => {
               itemKey="id"
               itemLabel="name"
               label="Menu Types"
-              name="menuTypes"
+              name="type"
               options={types}
               showChips
               fullWidth
@@ -47,7 +51,7 @@ const MenuForm = ({ initialData }: MenuFormProps) => {
 
           <TextFieldElement name="addons" label='Addons (Split with "," )' />
           <Button type="submit" variant="contained" sx={{ alignSelf: 'flex-end' }}>
-            Save
+            {initialData ? 'Save' : 'Create'}
           </Button>
         </Stack>
       </FormContainer>
