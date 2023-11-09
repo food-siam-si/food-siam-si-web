@@ -2,6 +2,7 @@ import { handleError } from '@/common/utils/handleError';
 
 import { AveragePrice, Restaurant, RestaurantType } from './dto';
 const MOCK = {
+  id: 1,
   name: 'Restaurant',
   description:
     'Restaurant description lorem ipsum dolor sit amet Restaurant description lorem ipsum dolor sit amet Restaurant description lorem ipsum dolor sit amet Restaurant description lorem ipsum dolor sit amet',
