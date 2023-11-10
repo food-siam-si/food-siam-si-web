@@ -13,7 +13,7 @@ export interface LoginResponse {
 }
 
 export interface GetCurrentUserResponse {
-  role: UserType;
+  type: UserType;
   id: number;
   username: string;
 }

@@ -3,7 +3,7 @@ import { AxiosError } from 'axios';
 import { apiClient } from '@/common/libs/axios';
 import { handleError } from '@/common/utils/handleError';
 
-import type { CreateUserRequest, GetCurrentUserResponse, LoginRequest, LoginResponse } from './dto';
+import { type CreateUserRequest, type GetCurrentUserResponse, type LoginRequest, type LoginResponse } from './dto';
 
 export class AuthApi {
   @handleError({ overrideMessage: { 401: 'email or password is incorrect' } })
