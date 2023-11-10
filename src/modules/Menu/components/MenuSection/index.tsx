@@ -1,4 +1,4 @@
-import { Button, CardContent, Stack, Typography } from '@mui/material';
+import { Box, Button, CardContent, Stack, Typography } from '@mui/material';
 import { useEffect, useState } from 'react';
 
 import { MenuApi } from '../../api';
@@ -6,7 +6,7 @@ import { Menu } from '../../api/dto';
 import MenuCard from '../MenuCard';
 import { MenuSectionProps } from './types';
 
-const MenuSection = ({ restaurantId }: MenuSectionProps) => {
+const MenuSection = ({ restaurantId, seeAllLink }: MenuSectionProps) => {
   const [menu, setMenu] = useState<Menu[]>();
 
   useEffect(() => {
@@ -24,15 +24,15 @@ const MenuSection = ({ restaurantId }: MenuSectionProps) => {
         <Typography variant="h5" sx={{ flexGrow: 1 }}>
           Recommended Menu
         </Typography>
-        <Button variant="text" href={`/restaurants/${restaurantId}/menu`}>
+        <Button variant="text" href={seeAllLink} sx={{ flexShrink: 0 }}>
           See All
         </Button>
       </Stack>
-      <Stack direction="row" gap={2} flexWrap="wrap">
+      <Box gap={2} sx={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(150px, 1fr))' }}>
         {menu.map((item) => (
           <MenuCard key={item.id} {...item} />
         ))}
-      </Stack>
+      </Box>
     </CardContent>
   );
 };

@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
+import PageGuard from '@/modules/User/components/PageGuard';
+
 import { Restaurant } from '../api/dto';
 import { RestaurantApi } from '../api/restaurantApi';
 import RestaurantDetailCard from '../components/RestaurantDetailCard';
@@ -18,7 +20,11 @@ const RestaurantPage = () => {
 
   if (!data) return null;
 
-  return <RestaurantDetailCard {...data} />;
+  return (
+    <PageGuard allowCustomer>
+      <RestaurantDetailCard restaurant={data} />
+    </PageGuard>
+  );
 };
 
 export default RestaurantPage;

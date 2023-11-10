@@ -1,4 +1,4 @@
-import { Route, Routes } from 'react-router-dom';
+import { Navigate, Route, Routes } from 'react-router-dom';
 
 import { ROUTING_PROPS } from './constants';
 
@@ -8,6 +8,7 @@ const Routing = () => {
       {ROUTING_PROPS.map((route) => (
         <Route key={route.path} {...route} />
       ))}
+      <Route path="*" element={<Navigate to="/" />} />
     </Routes>
   );
 };

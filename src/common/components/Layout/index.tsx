@@ -1,18 +1,30 @@
-import { AppBar, Container, Toolbar, Typography } from '@mui/material';
+import LogoutIcon from '@mui/icons-material/Logout';
+import { AppBar, Container, IconButton, Toolbar, Typography } from '@mui/material';
 import { PropsWithChildren } from 'react';
 import { useNavigate } from 'react-router-dom';
+
+import { useUser } from '@/modules/User/context/userContext';
 
 import { RootContainer } from './styled';
 
 const Layout = ({ children }: PropsWithChildren) => {
   const navigate = useNavigate();
+  const { reset, user } = useUser();
+
   return (
     <RootContainer>
       <AppBar position="static">
         <Toolbar>
-          <Typography variant="h6" sx={{ flexGrow: 1, cursor: 'pointer' }} onClick={() => navigate('/')}>
+          <Typography variant="h6" sx={{ cursor: 'pointer' }} onClick={() => navigate('/')}>
             FoodSiamSi
           </Typography>
+          <div style={{ flexGrow: 1 }} />
+
+          {user && (
+            <IconButton sx={{ color: 'white' }} onClick={reset}>
+              <LogoutIcon />
+            </IconButton>
+          )}
         </Toolbar>
       </AppBar>
       <Container

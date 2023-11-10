@@ -12,5 +12,5 @@ export interface Menu {
 
 export interface MenuType {
   id: number;
-  title: string;
+  name: string;
 }
