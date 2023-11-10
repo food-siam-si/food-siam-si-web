@@ -44,4 +44,5 @@ export interface Restaurant {
   averagePrice: AveragePrice;
   imageUrl: string;
   restaurantType: RestaurantType[];
+  rating: number;
 }

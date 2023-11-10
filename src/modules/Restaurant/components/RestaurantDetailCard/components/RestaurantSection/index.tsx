@@ -12,7 +12,7 @@ import DetailChip from '../DetailChip';
 const RestaurantSection = (data: Restaurant) => {
   const theme = useTheme();
   const isDesktop = useMediaQuery(theme.breakpoints.up('sm'));
-  const { name, restaurantType, description, locationLat, locationLong, phoneNumber, averagePrice } = data;
+  const { name, restaurantType, description, locationLat, locationLong, phoneNumber, averagePrice, rating } = data;
   const mapLink = `https://www.google.com/maps/search/?api=1&query=${locationLat},${locationLong}`;
   return (
     <CardContent>
@@ -49,7 +49,7 @@ const RestaurantSection = (data: Restaurant) => {
           </Typography>
         }
       >
-        <DetailChip label="Rating" Icon={StarRoundedIcon} value="5" />
+        {rating !== -1 && <DetailChip label="Rating" Icon={StarRoundedIcon} value={String(rating)} />}
         <DetailChip label="Average Price" Icon={AttachMoneyRoundedIcon} value={parseAveragePrice(averagePrice)} />
         <DetailChip label="Phone Number" Icon={PhoneRoundedIcon} value={phoneNumber} />
       </Stack>

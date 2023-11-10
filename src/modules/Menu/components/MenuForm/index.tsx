@@ -24,7 +24,7 @@ const MenuForm = ({ initialData }: MenuFormProps) => {
   return (
     <Paper sx={{ maxWidth: 1200, minWidth: 'min(1200px, 100%)', boxSizing: 'border-box', p: 2 }}>
       <Typography variant="h4" sx={{ mb: 2 }}>
-        Edit Menu
+        {initialData ? 'Edit' : 'Create'} Menu
       </Typography>
       <FormContainer formContext={methods} handleSubmit={onSubmit}>
         <Stack gap={2}>
