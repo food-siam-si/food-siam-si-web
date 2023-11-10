@@ -43,13 +43,15 @@ const ReviewSection = ({ restaurantId, enableReview }: ReviewSectionProps) => {
           >
             Write Review
           </Button>
-          <WriteReviewModal
-            onClose={() => {
-              setOpen(false);
-            }}
-            open={open}
-            restaurantId={restaurantId}
-          />
+          {open && (
+            <WriteReviewModal
+              onClose={() => {
+                setOpen(false);
+              }}
+              open={open}
+              restaurantId={restaurantId}
+            />
+          )}
         </>
       )}
     </CardContent>
