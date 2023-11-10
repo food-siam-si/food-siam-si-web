@@ -22,7 +22,6 @@ const RestaurantPage = () => {
 
   return (
     <PageGuard allowCustomer>
-      hello
       <RestaurantDetailCard restaurant={data} />
     </PageGuard>
   );

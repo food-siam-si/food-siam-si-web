@@ -13,5 +13,3 @@ apiClient.interceptors.request.use((config) => {
   }
   return config;
 });
-
-console.log(API_BASE_URL);

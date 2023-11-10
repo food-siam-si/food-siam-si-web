@@ -18,7 +18,6 @@ const useSignUpForm = () => {
   const onSubmit = async (data: ISignUpFormSchema) => {
     const { confirmPassword: _, ...rest } = data;
     await AuthApi.create(rest);
-    console.log('OK');
     toast.success('Sign up successfully');
     navigate('/login');
   };
