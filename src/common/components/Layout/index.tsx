@@ -9,7 +9,7 @@ import { RootContainer } from './styled';
 
 const Layout = ({ children }: PropsWithChildren) => {
   const navigate = useNavigate();
-  const { reset } = useUser();
+  const { reset, user } = useUser();
 
   return (
     <RootContainer>
@@ -19,9 +19,12 @@ const Layout = ({ children }: PropsWithChildren) => {
             FoodSiamSi
           </Typography>
           <div style={{ flexGrow: 1 }} />
-          <IconButton sx={{ color: 'white' }} onClick={reset}>
-            <LogoutIcon />
-          </IconButton>
+
+          {user && (
+            <IconButton sx={{ color: 'white' }} onClick={reset}>
+              <LogoutIcon />
+            </IconButton>
+          )}
         </Toolbar>
       </AppBar>
       <Container

@@ -15,12 +15,12 @@ const App = () => {
     <Suspense fallback={<div>Loading...</div>}>
       <BrowserRouter>
         <ThemeProvider theme={theme}>
-          <Layout>
-            <UserProvider>
+          <UserProvider>
+            <Layout>
               <Toaster />
               <Routing />
-            </UserProvider>
-          </Layout>
+            </Layout>
+          </UserProvider>
         </ThemeProvider>
       </BrowserRouter>
     </Suspense>
