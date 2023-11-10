@@ -11,9 +11,11 @@ const MenuList = ({ menu, isOwner }: MenuListProps) => {
         <Typography variant="h4" sx={{ flexGrow: 1 }}>
           Menu
         </Typography>
-        <Button variant="contained" startIcon={<AddIcon />} href="/manage/menu/create">
-          Create Menu
-        </Button>
+        {isOwner && (
+          <Button variant="contained" startIcon={<AddIcon />} href="/manage/menu/create">
+            Create Menu
+          </Button>
+        )}
       </Stack>
       <Stack gap={2} direction="row" flexWrap="wrap">
         {menu.map((item) => (

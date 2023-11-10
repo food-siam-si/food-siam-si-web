@@ -27,7 +27,7 @@ const LoginPage = () => {
           </Stack>
         </FormContainer>
       </Paper>
-      <Typography>
+      <Typography color="text.primary">
         Don't have an account yet? <Link href="/register">Sign Up</Link>
       </Typography>
     </>
