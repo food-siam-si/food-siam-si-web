@@ -1,5 +1,6 @@
 import { RouteProps } from 'react-router-dom';
 
+import ErrorPage from '@/modules/Error/pages/ErrorPage';
 import LandingPage from '@/modules/Landing/pages/LandingPage';
 import CreateMenuPage from '@/modules/Menu/page/CreateMenuPage';
 import EditMenuPage from '@/modules/Menu/page/EditMenuPage';
@@ -32,4 +33,8 @@ export const ROUTING_PROPS: RouteProps[] = [
   { path: '/restaurants/:id', Component: RestaurantPage },
   { path: '/restaurants/:id/menu', Component: MenuPage },
   { path: '/random', Component: RandomPage },
+
+  // error
+  { path: '/500', Component: ErrorPage },
+  { path: '/404', Component: ErrorPage },
 ];
