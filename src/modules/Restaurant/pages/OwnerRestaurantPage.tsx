@@ -18,13 +18,8 @@ const RestaurantPage = () => {
   }, []);
 
   if (data === null) return <Navigate to="/manage/restaurant/edit" replace={true} />;
-  if (!data) return null;
 
-  return (
-    <PageGuard allowOwner>
-      <RestaurantDetailCard restaurant={data} isOwner />
-    </PageGuard>
-  );
+  return <PageGuard allowOwner>{data && <RestaurantDetailCard restaurant={data} isOwner />}</PageGuard>;
 };
 
 export default RestaurantPage;

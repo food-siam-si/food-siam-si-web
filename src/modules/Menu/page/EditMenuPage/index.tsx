@@ -9,7 +9,7 @@ import PageGuard from '@/modules/User/components/PageGuard';
 const EditMenuPage = () => {
   const params = useParams<{ id: string }>();
 
-  const [data, setData] = useState<Menu | null>();
+  const [data, setData] = useState<Menu>();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -18,12 +18,7 @@ const EditMenuPage = () => {
     fetchData();
   }, [params.id]);
 
-  if (data === undefined) return null;
-  return (
-    <PageGuard allowOwner>
-      <MenuForm initialData={data} />
-    </PageGuard>
-  );
+  return <PageGuard allowOwner>{data && <MenuForm initialData={data} />}</PageGuard>;
 };
 
 export default EditMenuPage;
