@@ -21,7 +21,7 @@ const RestaurantSection = (data: Restaurant) => {
           {name}
         </Typography>
         {isDesktop ? (
-          <Button variant="contained" startIcon={<MapIcon />} href={mapLink}>
+          <Button variant="contained" startIcon={<MapIcon />} href={mapLink} sx={{ flexShrink: 0 }}>
             Open Map
           </Button>
         ) : (

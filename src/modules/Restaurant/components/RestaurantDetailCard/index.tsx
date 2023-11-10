@@ -11,7 +11,7 @@ const RestaurantDetailCard = ({ restaurant, isOwner }: RestaurantDetailCardProps
   const { name, id, imageUrl } = restaurant;
 
   return (
-    <Card sx={{ maxWidth: 1200 }}>
+    <Card sx={{ width: 'min(700px, 100%)' }}>
       <CardMedia sx={{ height: 200 }} image={imageUrl} title={name} />
       <Stack divider={<Divider variant="middle" />}>
         <RestaurantSection {...restaurant} />
