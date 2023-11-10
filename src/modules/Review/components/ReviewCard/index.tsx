@@ -8,7 +8,7 @@ const ReviewCard = ({ rate, description, writtenDate }: GetReviewsDto) => {
   return (
     <Card>
       <CardContent>
-        <Stack direction="row" alignItems="center" gap={2}>
+        <Stack direction="row" alignItems="center" gap={{ xs: 1, sm: 2 }}>
           <Avatar>
             <PersonIcon />
           </Avatar>

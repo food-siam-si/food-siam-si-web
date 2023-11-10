@@ -5,8 +5,8 @@ import { Menu } from '../../api/dto';
 const MenuCard = (menu: Menu) => {
   const { imageUrl, title, description } = menu;
   return (
-    <Card sx={{ maxWidth: '150px' }}>
-      <CardMedia sx={{ height: 100, width: 150, objectFit: 'cover' }} image={imageUrl} title={menu.title} />
+    <Card>
+      <CardMedia sx={{ height: 100, width: '100%', objectFit: 'cover' }} image={imageUrl} title={menu.title} />
       <CardContent sx={{ p: 1, pb: '8px !important', height: 'calc(100% - 110px)' }}>
         <Stack height="100%">
           <Typography variant="h6">{title}</Typography>
