@@ -15,7 +15,17 @@ export class RestaurantApi {
 
   @handleError()
   static async getTypes(): Promise<RestaurantType[]> {
-    return await apiClient.get('/restaurant/type');
+    return [
+      {
+        id: 1,
+        name: 'Restaurant type 1',
+      },
+      {
+        id: 2,
+        name: 'Restaurant type 2',
+      },
+    ];
+    // return await apiClient.get('/restaurant/type');
   }
 
   static async random(types: number[]): Promise<Restaurant> {
