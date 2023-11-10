@@ -1,10 +1,15 @@
 import { Button, Link, Paper, Stack, Typography } from '@mui/material';
 import { FormContainer, TextFieldElement } from 'react-hook-form-mui';
+import { Navigate } from 'react-router-dom';
 
+import { useUser } from '../../context/userContext';
 import useLoginForm from './useLoginForm';
 
 const LoginPage = () => {
   const { methods, onSubmit } = useLoginForm();
+  const { user } = useUser();
+
+  if (user) return <Navigate to="/" />;
 
   return (
     <>

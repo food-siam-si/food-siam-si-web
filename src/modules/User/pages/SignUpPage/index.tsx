@@ -1,11 +1,16 @@
 import { Button, Link, Paper, Stack, Typography } from '@mui/material';
 import { FormContainer, RadioButtonGroup, TextFieldElement } from 'react-hook-form-mui';
+import { Navigate } from 'react-router-dom';
 
 import { UserType } from '../../api/dto';
+import { useUser } from '../../context/userContext';
 import useSignUpForm from './useSignUpForm';
 
 const SignUpPage = () => {
   const { onSubmit, methods } = useSignUpForm();
+  const { user } = useUser();
+
+  if (user) return <Navigate to="/" />;
 
   return (
     <>
