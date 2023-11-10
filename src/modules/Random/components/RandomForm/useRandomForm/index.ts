@@ -1,9 +1,15 @@
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form-mui';
+import * as yup from 'yup';
 
-import { IRandomFormSchema, randomFormSchema } from './schema';
+const useRandomForm = (handleSubmit: (types: number[]) => void, type: string) => {
+  const randomFormSchema = yup.object().shape({
+    types: yup.array().of(yup.number().required()).required(),
+    distance: type === 'Menu' ? yup.number() : yup.number().typeError('distance must be number').required(),
+  });
 
-const useRandomForm = (handleSubmit: (types: number[]) => void) => {
+  type IRandomFormSchema = yup.InferType<typeof randomFormSchema>;
+
   const methods = useForm<IRandomFormSchema>({
     criteriaMode: 'all',
 
