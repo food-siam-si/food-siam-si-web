@@ -48,7 +48,7 @@ export class MenuApi {
   }
 
   @handleError()
-  static async random(restaurantId: number, types: number): Promise<Menu> {
+  static async random(restaurantId: number, types: number[]): Promise<Menu> {
     const res = await apiClient.get(`/restaurant/${restaurantId}/menus/random`, { params: { types } });
     return res.data;
   }
