@@ -1,12 +1,9 @@
 import MenuForm from '@/modules/Menu/components/MenuForm';
-import PageGuard from '@/modules/User/components/PageGuard';
+import { UserType } from '@/modules/User/api/dto';
+import withGuard from '@/modules/User/hoc/withGuard';
 
-const CreateMenuPage = () => {
-  return (
-    <PageGuard allowOwner>
-      <MenuForm />
-    </PageGuard>
-  );
-};
+const CreateMenuPage = withGuard(() => {
+  return <MenuForm />;
+}, [UserType.Owner]);
 
 export default CreateMenuPage;
