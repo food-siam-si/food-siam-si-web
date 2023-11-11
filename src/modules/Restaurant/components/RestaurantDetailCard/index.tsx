@@ -7,7 +7,7 @@ import MenuSection from '../../../Menu/components/MenuSection';
 import RestaurantSection from './components/RestaurantSection';
 import { RestaurantDetailCardProps } from './types';
 
-const RestaurantDetailCard = ({ restaurant, isOwner }: RestaurantDetailCardProps) => {
+const RestaurantDetailCard = ({ restaurant, isOwner, refetch }: RestaurantDetailCardProps) => {
   const { name, id, imageUrl } = restaurant;
 
   return (
@@ -16,7 +16,7 @@ const RestaurantDetailCard = ({ restaurant, isOwner }: RestaurantDetailCardProps
       <Stack divider={<Divider variant="middle" />}>
         <RestaurantSection {...restaurant} />
         <MenuSection restaurantId={id} seeAllLink={isOwner ? '/manage/menu' : `/restaurants/${id}/menu`} />
-        <ReviewSection restaurantId={id} enableReview={!isOwner} />
+        <ReviewSection restaurantId={id} enableReview={!isOwner} refetch={refetch} />
       </Stack>
       {isOwner && (
         <Button

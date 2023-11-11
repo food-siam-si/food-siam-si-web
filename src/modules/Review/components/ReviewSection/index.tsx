@@ -8,7 +8,7 @@ import ReviewCard from '../ReviewCard';
 import WriteReviewModal from '../WriteReviewModal';
 import { ReviewSectionProps } from './types';
 
-const ReviewSection = ({ restaurantId, enableReview }: ReviewSectionProps) => {
+const ReviewSection = ({ restaurantId, enableReview, refetch }: ReviewSectionProps) => {
   const [reviews, setReviews] = React.useState<GetReviewsDto[]>();
   const [open, setOpen] = React.useState(false);
   const fetchReviews = useCallback(async () => {
@@ -55,7 +55,10 @@ const ReviewSection = ({ restaurantId, enableReview }: ReviewSectionProps) => {
                 setOpen(false);
               }}
               open={open}
-              refetch={fetchReviews}
+              refetch={() => {
+                fetchReviews();
+                refetch();
+              }}
               restaurantId={restaurantId}
             />
           )}

@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { Navigate } from 'react-router-dom';
 
 import PageGuard from '@/modules/User/components/PageGuard';
@@ -9,17 +9,19 @@ import RestaurantDetailCard from '../components/RestaurantDetailCard';
 
 const RestaurantPage = () => {
   const [data, setData] = useState<Restaurant | null>();
+  const fetchData = useCallback(async () => {
+    setData(await RestaurantApi.getCurrent());
+  }, []);
 
   useEffect(() => {
-    const fetchData = async () => {
-      setData(await RestaurantApi.getCurrent());
-    };
     fetchData();
-  }, []);
+  }, [fetchData]);
 
   if (data === null) return <Navigate to="/manage/restaurant/edit" replace={true} />;
 
-  return <PageGuard allowOwner>{data && <RestaurantDetailCard restaurant={data} isOwner />}</PageGuard>;
+  return (
+    <PageGuard allowOwner>{data && <RestaurantDetailCard restaurant={data} isOwner refetch={fetchData} />}</PageGuard>
+  );
 };
 
 export default RestaurantPage;

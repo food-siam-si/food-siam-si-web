@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
 import PageGuard from '@/modules/User/components/PageGuard';
@@ -10,19 +10,19 @@ import RestaurantDetailCard from '../components/RestaurantDetailCard';
 const RestaurantPage = () => {
   const params = useParams<{ id: string }>();
   const [data, setData] = useState<Restaurant | null>();
+  const fetchData = useCallback(async () => {
+    setData(await RestaurantApi.getById(params.id || ''));
+  }, [params.id]);
 
   useEffect(() => {
-    const fetchData = async () => {
-      setData(await RestaurantApi.getById(params.id || ''));
-    };
     fetchData();
-  }, [params.id]);
+  }, [fetchData]);
 
   if (!data) return null;
 
   return (
     <PageGuard allowCustomer>
-      <RestaurantDetailCard restaurant={data} />
+      <RestaurantDetailCard restaurant={data} refetch={fetchData} />
     </PageGuard>
   );
 };
