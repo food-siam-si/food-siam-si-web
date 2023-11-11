@@ -2,6 +2,7 @@ import { AxiosError, AxiosResponse, InternalAxiosRequestConfig } from 'axios';
 
 import { apiClient } from '@/common/libs/axios';
 import { handleError } from '@/common/utils/handleError';
+import { RestaurantApi } from '@/modules/Restaurant/api/restaurantApi';
 
 import type { CreateMenuDto, Menu, MenuType } from './dto';
 
@@ -13,21 +14,21 @@ export class MenuApi {
   }
 
   @handleError()
-  static async createMenu(restaurantId: number, data: CreateMenuDto): Promise<void> {
-    await apiClient.post(`/restaurant/${restaurantId}/menus`, data);
-    return;
+  static async create(data: CreateMenuDto): Promise<void> {
+    const restaurant = await RestaurantApi.getCurrent(true);
+    await apiClient.post(`/restaurant/${restaurant?.id}/menus`, data);
   }
 
   @handleError()
-  static async updateMenu(restaurantId: number, menuId: number, data: CreateMenuDto): Promise<void> {
-    await apiClient.put(`/restaurant/${restaurantId}/menus/${menuId}`, data);
-    return;
+  static async update(menuId: number, data: CreateMenuDto): Promise<void> {
+    const restaurant = await RestaurantApi.getCurrent(true);
+    await apiClient.put(`/restaurant/${restaurant?.id}/menus/${menuId}`, data);
   }
 
-  @handleError()
-  static async deleteMenu(restaurantId: number, menuId: number): Promise<void> {
-    await apiClient.delete(`/restaurant/${restaurantId}/menus/${menuId}`);
-    return;
+  @handleError({ throwError: true })
+  static async delete(menuId: number): Promise<void> {
+    const restaurant = await RestaurantApi.getCurrent(true);
+    await apiClient.delete(`/restaurant/${restaurant?.id}/menus/${menuId}`);
   }
 
   @handleError()
@@ -37,7 +38,7 @@ export class MenuApi {
   }
 
   @handleError()
-  static async setRecommendMenu(isRecommended: boolean, restaurantId: number, menuId: number): Promise<void> {
+  static async setRecommend(isRecommended: boolean, restaurantId: number, menuId: number): Promise<void> {
     const res = await apiClient.put(`/restaurant/${restaurantId}/menus/${menuId}/recommend`, { isRecommended });
     return res.data;
   }
@@ -54,7 +55,7 @@ export class MenuApi {
     return res.data.types;
   }
 
-  @handleError()
+  @handleError({ overrideMessage: { 404: 'No menu match your criteria' } })
   static async random(restaurantId: number, types: number[]): Promise<Menu> {
     const res = await apiClient.get(`/restaurant/${restaurantId}/menus/random`, { params: { types } });
     return res.data;

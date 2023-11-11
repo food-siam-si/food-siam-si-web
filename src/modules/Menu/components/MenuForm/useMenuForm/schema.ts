@@ -6,7 +6,7 @@ export const menuFromSchema = yup.object().shape({
   description: yup.string().required(),
   imageUrl: yup.string().url().required(),
   price: yup.number().typeError('Price must be a number').required(),
-  type: yup.array().of(yup.number()).required(),
+  type: yup.array().of(yup.number().required()).required(),
   addons: yup.string(),
 });
 

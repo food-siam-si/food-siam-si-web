@@ -29,7 +29,7 @@ const ReviewSection = ({ restaurantId, enableReview, refetch }: ReviewSectionPro
       {reviews.length > 0 ? (
         <Stack gap={2}>
           {reviews.map((review) => (
-            <ReviewCard {...review} />
+            <ReviewCard {...review} key={review.id} />
           ))}
         </Stack>
       ) : (

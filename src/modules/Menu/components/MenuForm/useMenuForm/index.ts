@@ -1,11 +1,16 @@
 import { yupResolver } from '@hookform/resolvers/yup';
+import { useCallback } from 'react';
 import { useForm } from 'react-hook-form-mui';
+import toast from 'react-hot-toast';
+import { useNavigate } from 'react-router-dom';
 
+import { MenuApi } from '@/modules/Menu/api';
 import { Menu } from '@/modules/Menu/api/dto';
 
 import { IMenuFormSchema, menuFromSchema } from './schema';
 
 const useMenuForm = (initialData?: Menu) => {
+  const navigate = useNavigate();
   const methods = useForm<IMenuFormSchema>({
     criteriaMode: 'all',
     defaultValues: {
@@ -16,14 +21,41 @@ const useMenuForm = (initialData?: Menu) => {
     resolver: yupResolver(menuFromSchema),
   });
 
+  const onDelete = useCallback(async () => {
+    if (!initialData) return;
+    try {
+      await MenuApi.delete(initialData.id);
+      toast.success('Delete menu successfully');
+      navigate('/manage/menu');
+    } catch (e) {
+      /* empty */
+    }
+  }, [initialData, navigate]);
+
   const onSubmit = async (data: IMenuFormSchema) => {
     console.log(data);
+    const { type, isRecommended, addons, ...rest } = data;
+    const formatted = {
+      ...rest,
+      typesId: type,
+      isRecommended: isRecommended ?? false,
+      addons: addons ? addons.split(', ').filter((value) => value.trim() != '') : [],
+    };
+
+    try {
+      if (initialData) {
+        await MenuApi.update(initialData.id, formatted);
+      } else {
+        await MenuApi.create(formatted);
+      }
+      toast.success(`Menu ${initialData ? 'edited' : 'created'} successfully`);
+      navigate('/manage/menu');
+    } catch (e) {
+      /* empty */
+    }
   };
 
-  return {
-    methods,
-    onSubmit: methods.handleSubmit(onSubmit),
-  };
+  return { onDelete, methods, onSubmit: methods.handleSubmit(onSubmit) };
 };
 
 export default useMenuForm;

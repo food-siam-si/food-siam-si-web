@@ -16,7 +16,6 @@ export interface CreateMenuDto {
   price: number;
   isRecommended: boolean;
   imageUrl: string;
-  restaurantId: number;
   addons: string[];
   typesId: number[];
 }

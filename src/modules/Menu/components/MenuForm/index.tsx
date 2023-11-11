@@ -8,7 +8,7 @@ import { MenuFormProps } from './types';
 import useMenuForm from './useMenuForm';
 
 const MenuForm = ({ initialData }: MenuFormProps) => {
-  const { methods, onSubmit } = useMenuForm(initialData);
+  const { methods, onSubmit, onDelete } = useMenuForm(initialData);
 
   const [types, setTypes] = useState<MenuType[]>();
 
@@ -46,9 +46,12 @@ const MenuForm = ({ initialData }: MenuFormProps) => {
           </Stack>
 
           <TextFieldElement name="addons" label='Addons (Split with "," )' />
-          <Button type="submit" variant="contained" sx={{ alignSelf: 'flex-end' }}>
-            {initialData ? 'Save' : 'Create'}
-          </Button>
+          <Stack direction="row" gap={1} alignSelf="flex-end">
+            {initialData && <Button onClick={onDelete}>Delete</Button>}
+            <Button type="submit" variant="contained" sx={{ alignSelf: 'flex-end' }}>
+              {initialData ? 'Save' : 'Create'}
+            </Button>
+          </Stack>
         </Stack>
       </FormContainer>
     </Paper>
