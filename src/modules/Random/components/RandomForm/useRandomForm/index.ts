@@ -17,7 +17,6 @@ const useRandomForm = (handleSubmit: (types: number[], distance: number) => void
   });
 
   const onSubmit = async (data: IRandomFormSchema) => {
-    console.log(data);
     handleSubmit(data.types, data.distance ?? 0);
   };
 

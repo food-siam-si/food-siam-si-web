@@ -14,7 +14,7 @@ const RandomModal = ({ open, onClose, restaurant }: RandomModalProps) => {
   if (!restaurant) return null;
 
   const handleSubmit = async (data: number[]) => {
-    // setMenu(await MenuApi.random(restaurant?.id, data));
+    setMenu(await MenuApi.random(restaurant.id, data));
   };
 
   const { imageUrl } = restaurant;
