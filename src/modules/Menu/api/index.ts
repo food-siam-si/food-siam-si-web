@@ -62,11 +62,8 @@ export class MenuApi {
 
   @handleError()
   static async getSelfMenuInfo(menuId: number): Promise<Menu> {
-    const res = await RestaurantApi.getCurrent();
+    const res = await RestaurantApi.getCurrent(true);
     const restaurantId = res?.id;
-    if (!restaurantId) {
-      throw new Error('Restaurant not found');
-    }
     const res2 = await apiClient.get(`/restaurant/${restaurantId}/menus/${menuId}`);
     return res2.data;
   }

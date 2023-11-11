@@ -28,11 +28,17 @@ const MenuSection = ({ restaurantId, seeAllLink }: MenuSectionProps) => {
           See All
         </Button>
       </Stack>
-      <Box gap={2} sx={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(150px, 1fr))' }}>
-        {menu.map((item) => (
-          <MenuCard key={item.id} {...item} />
-        ))}
-      </Box>
+      {menu.length > 0 ? (
+        <Box gap={2} sx={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(150px, 1fr))' }}>
+          {menu.map((item) => (
+            <MenuCard key={item.id} {...item} />
+          ))}
+        </Box>
+      ) : (
+        <Typography variant="body1" color="text.secondary">
+          No recommended menu
+        </Typography>
+      )}
     </CardContent>
   );
 };

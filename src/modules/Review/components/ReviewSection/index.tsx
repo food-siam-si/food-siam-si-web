@@ -23,14 +23,21 @@ const ReviewSection = ({ restaurantId, enableReview }: ReviewSectionProps) => {
 
   return (
     <CardContent>
-      <Typography variant="h5" sx={{ mb: 2 }}>
+      <Typography variant="h5" sx={{ mb: 1 }}>
         Reviews
       </Typography>
-      <Stack gap={2}>
-        {reviews.map((review) => (
-          <ReviewCard {...review} />
-        ))}
-      </Stack>
+      {reviews.length > 0 ? (
+        <Stack gap={2}>
+          {reviews.map((review) => (
+            <ReviewCard {...review} />
+          ))}
+        </Stack>
+      ) : (
+        <Typography variant="body1" color="text.secondary">
+          {' '}
+          No reviews yet
+        </Typography>
+      )}
       {enableReview && (
         <>
           <Button

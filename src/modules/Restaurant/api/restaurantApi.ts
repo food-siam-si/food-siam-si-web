@@ -19,11 +19,12 @@ export class RestaurantApi {
   }
 
   @handleError()
-  static async getCurrent(): Promise<Restaurant | null> {
+  static async getCurrent(disableBypassNotfound?: boolean): Promise<Restaurant | null> {
     try {
       const res = await apiClient.get('/restaurant/me');
       return res.data;
     } catch (e) {
+      if (disableBypassNotfound) throw e;
       if ((e as AxiosError).response?.status !== 404) {
         throw e;
       }
