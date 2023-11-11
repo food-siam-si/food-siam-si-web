@@ -13,7 +13,7 @@ const EditMenuPage = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      setData(await MenuApi.getById(Number(params.id)));
+      setData(await MenuApi.getSelfMenuInfo(Number(params.id)));
     };
     fetchData();
   }, [params.id]);

@@ -1,27 +1,18 @@
+import { apiClient } from '@/common/libs/axios';
 import { handleError } from '@/common/utils/handleError';
 
-import { GetReviewsDto } from './dto';
+import type { CreateReviewsDto, GetReviewsDto } from './dto';
 
 export class ReviewApi {
   @handleError()
   static async get(restaurantId: number): Promise<GetReviewsDto[]> {
-    return [
-      {
-        id: 1,
-        userId: 1,
-        restaurantId: 1,
-        description: 'description',
-        rate: 5,
-        writtenDate: new Date(),
-      },
-      {
-        id: 2,
-        userId: 2,
-        restaurantId: 1,
-        description: 'description',
-        rate: 4,
-        writtenDate: new Date(),
-      },
-    ];
+    const res = await apiClient.get(`/review/${restaurantId}`);
+    return res.data;
+  }
+
+  @handleError()
+  static async createReview(restaurantId: number, review: CreateReviewsDto): Promise<void> {
+    await apiClient.post(`/review/${restaurantId}`, review);
+    return;
   }
 }

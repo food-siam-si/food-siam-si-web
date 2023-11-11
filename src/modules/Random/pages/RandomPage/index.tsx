@@ -12,7 +12,7 @@ const RandomPage = () => {
   const [restaurant, setRestaurant] = useState<Restaurant>();
 
   const handleSubmit = async (data: number[]) => {
-    setRestaurant(await RestaurantApi.random(data));
+    setRestaurant(await RestaurantApi.random({ restaurantTypeIds: data }));
     setOpen(true);
   };
 

@@ -10,6 +10,17 @@ export interface Menu {
   type: MenuType[];
 }
 
+export interface CreateMenuDto {
+  title: string;
+  description: string;
+  price: number;
+  isRecommended: boolean;
+  imageUrl: string;
+  restaurantId: number;
+  addons: string[];
+  type: MenuType[];
+}
+
 export interface MenuType {
   id: number;
   name: string;
