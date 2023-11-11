@@ -1,6 +1,6 @@
 import CreateIcon from '@mui/icons-material/Create';
 import { Button, CardContent, Stack, Typography } from '@mui/material';
-import React, { useEffect } from 'react';
+import React, { useCallback, useEffect } from 'react';
 
 import { ReviewApi } from '../../api';
 import { GetReviewsDto } from '../../api/dto';
@@ -11,13 +11,13 @@ import { ReviewSectionProps } from './types';
 const ReviewSection = ({ restaurantId, enableReview }: ReviewSectionProps) => {
   const [reviews, setReviews] = React.useState<GetReviewsDto[]>();
   const [open, setOpen] = React.useState(false);
+  const fetchReviews = useCallback(async () => {
+    setReviews(await ReviewApi.get(restaurantId));
+  }, [restaurantId]);
 
   useEffect(() => {
-    const fetchReviews = async () => {
-      setReviews(await ReviewApi.get(restaurantId));
-    };
     fetchReviews();
-  }, [restaurantId]);
+  }, [fetchReviews]);
 
   if (!reviews) return null;
 
@@ -34,7 +34,6 @@ const ReviewSection = ({ restaurantId, enableReview }: ReviewSectionProps) => {
         </Stack>
       ) : (
         <Typography variant="body1" color="text.secondary">
-          {' '}
           No reviews yet
         </Typography>
       )}
@@ -56,6 +55,7 @@ const ReviewSection = ({ restaurantId, enableReview }: ReviewSectionProps) => {
                 setOpen(false);
               }}
               open={open}
+              refetch={fetchReviews}
               restaurantId={restaurantId}
             />
           )}

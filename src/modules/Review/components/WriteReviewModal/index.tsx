@@ -4,8 +4,11 @@ import { FormContainer, TextFieldElement } from 'react-hook-form-mui';
 import { WriteReviewModalProps } from './types';
 import useReviewForm from './useReviewForm';
 
-const WriteReviewModal = ({ open, onClose, restaurantId }: WriteReviewModalProps) => {
-  const { methods, onSubmit } = useReviewForm(restaurantId);
+const WriteReviewModal = ({ open, onClose, restaurantId, refetch }: WriteReviewModalProps) => {
+  const { methods, onSubmit } = useReviewForm(restaurantId, async () => {
+    await refetch();
+    onClose();
+  });
 
   return (
     <Dialog open={open} onClose={onClose} fullWidth>
