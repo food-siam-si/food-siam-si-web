@@ -6,7 +6,7 @@ export interface Menu {
   isRecommended: boolean;
   imageUrl: string;
   restaurantId: number;
-  addons: string[];
+  addons: MenuAddon[];
   type: MenuType[];
 }
 
