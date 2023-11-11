@@ -49,7 +49,7 @@ const RestaurantSection = (data: Restaurant) => {
           </Typography>
         }
       >
-        {rating !== -1 && <DetailChip label="Rating" Icon={StarRoundedIcon} value={rating.toFixed(2)} />}
+        {rating >= 1 && <DetailChip label="Rating" Icon={StarRoundedIcon} value={rating.toFixed(2)} />}
         <DetailChip label="Average Price" Icon={AttachMoneyRoundedIcon} value={parseAveragePrice(averagePrice)} />
         <DetailChip label="Phone Number" Icon={PhoneRoundedIcon} value={phoneNumber} />
       </Stack>
