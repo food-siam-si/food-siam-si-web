@@ -13,13 +13,13 @@ export class MenuApi {
     return res.data;
   }
 
-  @handleError()
+  @handleError({ throwError: true })
   static async create(data: CreateMenuDto): Promise<void> {
     const restaurant = await RestaurantApi.getCurrent(true);
     await apiClient.post(`/restaurant/${restaurant?.id}/menus`, data);
   }
 
-  @handleError()
+  @handleError({ throwError: true })
   static async update(menuId: number, data: CreateMenuDto): Promise<void> {
     const restaurant = await RestaurantApi.getCurrent(true);
     await apiClient.put(`/restaurant/${restaurant?.id}/menus/${menuId}`, data);
