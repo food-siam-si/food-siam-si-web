@@ -38,8 +38,10 @@ export class RestaurantApi {
     return res.data.restaurantTypes;
   }
 
+  @handleError({ overrideMessage: { '404': 'No restaurant match your criteria' } })
   static async random(params: RandomRestaurantRequest): Promise<Restaurant> {
-    return await apiClient.get('/restaurant/random', { params });
+    const res = await apiClient.get('/restaurant/random', { params });
+    return res.data;
   }
 
   @handleError({ throwError: true })

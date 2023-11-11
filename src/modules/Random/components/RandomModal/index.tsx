@@ -11,11 +11,11 @@ import { RandomModalProps } from './types';
 const RandomModal = ({ open, onClose, restaurant }: RandomModalProps) => {
   const [menu, setMenu] = useState<Menu>();
 
-  const handleSubmit = async (data: number[]) => {
-    setMenu(await MenuApi.random(data));
-  };
-
   if (!restaurant) return null;
+
+  const handleSubmit = async (data: number[]) => {
+    // setMenu(await MenuApi.random(restaurant?.id, data));
+  };
 
   const { imageUrl } = restaurant;
 
@@ -47,7 +47,7 @@ const RandomModal = ({ open, onClose, restaurant }: RandomModalProps) => {
                 position: 'absolute',
                 top: 0,
                 background: 'linear-gradient(to bottom, rgba(0,0,0,0.5), rgba(0,0,0,0))',
-                height: '50px',
+                height: '100px',
               }}
             />
             <Typography variant="h5" sx={{ position: 'absolute', top: 0, mx: 1, my: 0.5 }} color="white">

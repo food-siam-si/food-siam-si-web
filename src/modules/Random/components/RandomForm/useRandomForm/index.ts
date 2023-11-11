@@ -2,10 +2,10 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form-mui';
 import * as yup from 'yup';
 
-const useRandomForm = (handleSubmit: (types: number[]) => void, type: string) => {
+const useRandomForm = (handleSubmit: (types: number[], distance: number) => void, withDistance?: boolean) => {
   const randomFormSchema = yup.object().shape({
     types: yup.array().of(yup.number().required()).required(),
-    distance: type === 'Menu' ? yup.number() : yup.number().typeError('distance must be number').required(),
+    distance: withDistance ? yup.number().typeError('distance must be number').required() : yup.number(),
   });
 
   type IRandomFormSchema = yup.InferType<typeof randomFormSchema>;
@@ -18,7 +18,7 @@ const useRandomForm = (handleSubmit: (types: number[]) => void, type: string) =>
 
   const onSubmit = async (data: IRandomFormSchema) => {
     console.log(data);
-    handleSubmit(data.types);
+    handleSubmit(data.types, data.distance ?? 0);
   };
 
   return {

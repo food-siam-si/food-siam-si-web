@@ -44,7 +44,7 @@ export class MenuApi {
   @handleError()
   static async getTypes(): Promise<MenuType[]> {
     const res = await apiClient.get(`/menu/type`);
-    return res.data;
+    return res.data.types;
   }
 
   @handleError()
