@@ -7,7 +7,7 @@ export interface Menu {
   imageUrl: string;
   restaurantId: number;
   addons: MenuAddon[];
-  type: MenuType[];
+  types: MenuType[];
 }
 
 export interface CreateMenuDto {
@@ -18,7 +18,7 @@ export interface CreateMenuDto {
   imageUrl: string;
   restaurantId: number;
   addons: string[];
-  type: number[];
+  typesId: number[];
 }
 
 export interface MenuType {
