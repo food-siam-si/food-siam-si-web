@@ -18,10 +18,15 @@ export interface CreateMenuDto {
   imageUrl: string;
   restaurantId: number;
   addons: string[];
-  type: MenuType[];
+  type: number[];
 }
 
 export interface MenuType {
   id: number;
   name: string;
+}
+
+export interface MenuAddon {
+  menu_id: number;
+  addons: string;
 }
