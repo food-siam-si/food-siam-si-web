@@ -10,8 +10,8 @@ const useMenuForm = (initialData?: Menu) => {
     criteriaMode: 'all',
     defaultValues: {
       ...initialData,
-      addons: initialData?.addons.join(', '),
-      type: initialData?.type.map((item) => item.id),
+      addons: initialData?.addons.map(({ addons }) => addons).join(', '),
+      type: initialData?.types.map((item) => item.id),
     },
     resolver: yupResolver(menuFromSchema),
   });

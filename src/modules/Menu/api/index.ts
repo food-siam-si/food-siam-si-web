@@ -1,6 +1,7 @@
+import { AxiosError, AxiosResponse, InternalAxiosRequestConfig } from 'axios';
+
 import { apiClient } from '@/common/libs/axios';
 import { handleError } from '@/common/utils/handleError';
-import { RestaurantApi } from '@/modules/Restaurant/api/restaurantApi';
 
 import type { CreateMenuDto, Menu, MenuType } from './dto';
 
@@ -68,9 +69,14 @@ export class MenuApi {
 
   @handleError()
   static async getSelfMenuInfo(menuId: number): Promise<Menu> {
-    const res = await RestaurantApi.getCurrent(true);
-    const restaurantId = res?.id;
-    const res2 = await apiClient.get(`/restaurant/${restaurantId}/menus/${menuId}`);
-    return res2.data;
+    const res = await this.getCurrent();
+
+    const menu = res.find((menu) => menu.id === menuId);
+    if (!menu)
+      throw new AxiosError('', '', {} as InternalAxiosRequestConfig, 0, {
+        status: 404,
+        data: { message: 'Menu not found' },
+      } as AxiosResponse);
+    return menu;
   }
 }
