@@ -72,6 +72,12 @@ export class MenuApi {
   static async getSelfMenuInfo(menuId: number): Promise<Menu> {
     const res = await this.getCurrent();
 
+    if (!res)
+      throw new AxiosError('', '', {} as InternalAxiosRequestConfig, 0, {
+        status: 403,
+        data: { message: 'Forbidden' },
+      } as AxiosResponse);
+
     const menu = res.find((menu) => menu.id === menuId);
     if (!menu)
       throw new AxiosError('', '', {} as InternalAxiosRequestConfig, 0, {
