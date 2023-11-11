@@ -63,8 +63,8 @@ export class MenuApi {
 
   @handleError()
   static async getCurrent(): Promise<Menu[]> {
-    const id = 1;
-    const res = await apiClient.get(`/restaurant/${id}/menus`);
+    const restaurant = await RestaurantApi.getCurrent(true);
+    const res = await apiClient.get(`/restaurant/${restaurant?.id}/menus`);
     return res.data;
   }
 
