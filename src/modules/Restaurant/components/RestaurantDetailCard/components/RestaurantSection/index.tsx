@@ -59,7 +59,7 @@ const RestaurantSection = (data: Restaurant) => {
         ))}
       </Stack>
 
-      <Typography variant="body2" color="text.secondary">
+      <Typography variant="body2" color="text.secondary" sx={{ overflowWrap: 'break-word' }}>
         {description}
       </Typography>
     </CardContent>
