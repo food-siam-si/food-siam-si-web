@@ -33,7 +33,6 @@ const useMenuForm = (initialData?: Menu) => {
   }, [initialData, navigate]);
 
   const onSubmit = async (data: IMenuFormSchema) => {
-    console.log(data);
     const { type, isRecommended, addons, ...rest } = data;
     const formatted = {
       ...rest,
