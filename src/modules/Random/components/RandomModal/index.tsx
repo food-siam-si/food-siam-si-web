@@ -76,7 +76,11 @@ const RandomModal = ({ open, onClose, restaurant }: RandomModalProps) => {
             <Typography variant="h6" sx={{ textAlign: 'center', mt: 1 }}>
               Don't know what to eat?
             </Typography>
-            <RandomForm fetchTypes={MenuApi.getTypes} handleSubmit={handleSubmit} label="Menu" />
+            <RandomForm
+              fetchTypes={() => MenuApi.getTypesByRestaurantId(restaurant.id)}
+              handleSubmit={handleSubmit}
+              label="Menu"
+            />
           </>
         )}
       </Stack>
