@@ -1,5 +1,6 @@
 import AddIcon from '@mui/icons-material/Add';
 import { Button, Paper, Stack, Typography } from '@mui/material';
+import { Link } from 'react-router-dom';
 
 import FullMenuCard from '../FullMenuCard';
 import { MenuListProps } from './types';
@@ -12,7 +13,7 @@ const MenuList = ({ menu, isOwner }: MenuListProps) => {
           Menu
         </Typography>
         {isOwner && (
-          <Button variant="contained" startIcon={<AddIcon />} href="/manage/menu/create">
+          <Button variant="contained" startIcon={<AddIcon />} to="/manage/menu/create" component={Link}>
             Create Menu
           </Button>
         )}

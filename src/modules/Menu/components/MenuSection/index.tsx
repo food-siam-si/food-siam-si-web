@@ -1,5 +1,6 @@
 import { Box, Button, CardContent, Stack, Typography } from '@mui/material';
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 import { MenuApi } from '../../api';
 import { Menu } from '../../api/dto';
@@ -24,7 +25,7 @@ const MenuSection = ({ restaurantId, seeAllLink }: MenuSectionProps) => {
         <Typography variant="h5" sx={{ flexGrow: 1 }}>
           Recommended Menu
         </Typography>
-        <Button variant="text" href={seeAllLink} sx={{ flexShrink: 0 }}>
+        <Button variant="text" to={seeAllLink} sx={{ flexShrink: 0 }} component={Link}>
           See All
         </Button>
       </Stack>

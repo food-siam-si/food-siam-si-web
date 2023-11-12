@@ -10,16 +10,11 @@ const useUserData = () => {
   const location = useLocation();
 
   const refetch = useCallback(async () => {
-    let res;
-    if (['/500', '/404'].includes(location.pathname)) {
-      res = null;
-    } else {
-      res = await AuthApi.get();
-    }
+    const res = await AuthApi.get();
 
     setUser(res);
     setLoading(false);
-  }, [location.pathname]);
+  }, []);
 
   const reset = useCallback(() => {
     window.localStorage.removeItem('token');
@@ -27,8 +22,11 @@ const useUserData = () => {
   }, []);
 
   useEffect(() => {
-    refetch();
-  }, [location.pathname, refetch]);
+    if (['/500', '/404'].includes(location.pathname)) return;
+    else if (!user) {
+      refetch();
+    }
+  }, [location.pathname, refetch, user]);
 
   return { user, isLoading, refetch, reset, setUser };
 };

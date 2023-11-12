@@ -1,5 +1,6 @@
-import { Chip, Dialog, Divider, Link, Paper, Stack, Typography } from '@mui/material';
+import { Chip, Dialog, Divider, Paper, Stack, Typography } from '@mui/material';
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 import { MenuApi } from '@/modules/Menu/api';
 import { Menu } from '@/modules/Menu/api/dto';
@@ -30,7 +31,7 @@ const RandomModal = ({ open, onClose, restaurant }: RandomModalProps) => {
         <Typography variant="h5" sx={{ textAlign: 'center' }} color="priamry">
           Random Result
         </Typography>
-        <Link href={`/restaurants/${restaurant.id}`}>
+        <Link to={`/restaurants/${restaurant.id}`}>
           <Paper
             sx={{
               height: '150px',

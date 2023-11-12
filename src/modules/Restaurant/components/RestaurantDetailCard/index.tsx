@@ -1,5 +1,6 @@
 import CreateIcon from '@mui/icons-material/Create';
 import { Button, Card, CardMedia, Divider, Stack } from '@mui/material';
+import { Link } from 'react-router-dom';
 
 import ReviewSection from '@/modules/Review/components/ReviewSection';
 
@@ -23,7 +24,8 @@ const RestaurantDetailCard = ({ restaurant, isOwner, refetch }: RestaurantDetail
           variant="contained"
           startIcon={<CreateIcon />}
           sx={{ float: 'right', mr: 2, mb: 2 }}
-          href="/manage/restaurant/edit"
+          to="/manage/restaurant/edit"
+          component={Link}
         >
           Edit Restaurant
         </Button>
