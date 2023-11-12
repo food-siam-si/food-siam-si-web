@@ -15,7 +15,7 @@ const useMenuForm = (initialData?: Menu) => {
     criteriaMode: 'all',
     defaultValues: {
       ...initialData,
-      addons: initialData?.addons.map(({ addons }) => addons).join(', '),
+      addons: initialData?.addons.map(({ addons }) => addons).join(','),
       type: initialData?.types.map((item) => item.id),
     },
     resolver: yupResolver(menuFromSchema),
@@ -38,7 +38,12 @@ const useMenuForm = (initialData?: Menu) => {
       ...rest,
       typesId: type,
       isRecommended: isRecommended ?? false,
-      addons: addons ? addons.split(', ').filter((value) => value.trim() != '') : [],
+      addons: addons
+        ? addons
+            .split(',')
+            .filter((value) => value.trim() != '')
+            .map((val) => val.trim())
+        : [],
     };
 
     try {

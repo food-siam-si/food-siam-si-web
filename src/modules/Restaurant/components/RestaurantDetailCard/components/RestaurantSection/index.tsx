@@ -17,7 +17,7 @@ const RestaurantSection = (data: Restaurant) => {
   return (
     <CardContent>
       <Stack direction="row" spacing={2} alignItems="center" sx={{ mb: 0.5 }}>
-        <Typography variant="h4" component="div" sx={{ flexGrow: 1 }}>
+        <Typography variant="h4" component="div" sx={{ flexGrow: 1, overflowWrap: 'break-word' }}>
           {name}
         </Typography>
         {isDesktop ? (
