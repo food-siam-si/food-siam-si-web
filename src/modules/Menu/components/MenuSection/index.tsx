@@ -1,5 +1,6 @@
 import { Box, Button, CardContent, Stack, Typography } from '@mui/material';
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 import { MenuApi } from '../../api';
 import { Menu } from '../../api/dto';
@@ -24,15 +25,21 @@ const MenuSection = ({ restaurantId, seeAllLink }: MenuSectionProps) => {
         <Typography variant="h5" sx={{ flexGrow: 1 }}>
           Recommended Menu
         </Typography>
-        <Button variant="text" href={seeAllLink} sx={{ flexShrink: 0 }}>
+        <Button variant="text" to={seeAllLink} sx={{ flexShrink: 0 }} component={Link}>
           See All
         </Button>
       </Stack>
-      <Box gap={2} sx={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(150px, 1fr))' }}>
-        {menu.map((item) => (
-          <MenuCard key={item.id} {...item} />
-        ))}
-      </Box>
+      {menu.length > 0 ? (
+        <Box gap={2} sx={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(150px, 1fr))' }}>
+          {menu.map((item) => (
+            <MenuCard key={item.id} {...item} />
+          ))}
+        </Box>
+      ) : (
+        <Typography variant="body1" color="text.secondary">
+          No recommended menu
+        </Typography>
+      )}
     </CardContent>
   );
 };

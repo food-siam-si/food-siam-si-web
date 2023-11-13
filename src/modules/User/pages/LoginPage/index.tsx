@@ -1,6 +1,7 @@
 import { Button, Link, Paper, Stack, Typography } from '@mui/material';
 import { FormContainer, TextFieldElement } from 'react-hook-form-mui';
 import { Navigate } from 'react-router-dom';
+import { Link as RRDLink } from 'react-router-dom';
 
 import { useUser } from '../../context/userContext';
 import useLoginForm from './useLoginForm';
@@ -28,7 +29,10 @@ const LoginPage = () => {
         </FormContainer>
       </Paper>
       <Typography color="text.primary">
-        Don't have an account yet? <Link href="/register">Sign Up</Link>
+        Don't have an account yet?{' '}
+        <Link to="/register" component={RRDLink}>
+          Sign Up
+        </Link>
       </Typography>
     </>
   );

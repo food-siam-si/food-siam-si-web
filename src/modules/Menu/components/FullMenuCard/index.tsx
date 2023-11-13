@@ -1,10 +1,12 @@
 import CreateIcon from '@mui/icons-material/Create';
 import { Card, CardContent, CardMedia, Chip, IconButton, Stack, Typography } from '@mui/material';
+import { Link } from 'react-router-dom';
 
 import { FullMenuCardProps } from './types';
 
 const FullMenuCard = ({ menu, enableEdit }: FullMenuCardProps) => {
-  const { imageUrl, title, description, type, addons } = menu;
+  const { imageUrl, title, description, types, addons } = menu;
+
   return (
     <Card sx={{ display: 'flex', flexDirection: { xs: 'column', sm: 'row' }, width: '100%' }}>
       <CardMedia
@@ -17,25 +19,26 @@ const FullMenuCard = ({ menu, enableEdit }: FullMenuCardProps) => {
           <Stack direction="row" gap={1} mb={0.5} alignItems="center">
             <Typography variant="h6">{title}</Typography>
             <Stack direction="row" gap={0.75}>
-              {type.map(({ id, name }) => (
+              {types.map(({ id, name }) => (
                 <Chip key={id} label={name} size="small" />
               ))}
             </Stack>
             <div style={{ flexGrow: 1 }} />
             {enableEdit && (
-              <IconButton
-                href={`/manage/menu/${menu.id}/edit`}
-                size="small"
-                sx={{
-                  backgroundColor: 'primary.main',
-                  color: 'white',
-                  ':hover': {
-                    backgroundColor: 'primary.dark',
-                  },
-                }}
-              >
-                <CreateIcon />
-              </IconButton>
+              <Link to={`/manage/menu/${menu.id}/edit`}>
+                <IconButton
+                  size="small"
+                  sx={{
+                    backgroundColor: 'primary.main',
+                    color: 'white',
+                    ':hover': {
+                      backgroundColor: 'primary.dark',
+                    },
+                  }}
+                >
+                  <CreateIcon />
+                </IconButton>
+              </Link>
             )}
           </Stack>
           <Typography variant="body2" color="text.secondary" sx={{ flexGrow: 1 }}>
@@ -46,14 +49,14 @@ const FullMenuCard = ({ menu, enableEdit }: FullMenuCardProps) => {
             {addons.length > 0 && (
               <>
                 <Typography variant="body2">Addons</Typography>
-                {addons.map((name, idx) => (
+                {addons.map(({ addons }, idx) => (
                   <Chip
                     key={idx}
                     label={
                       <Typography color="primary" variant="caption">
                         +{' '}
                         <Typography color="text.primary" display="inline" variant="inherit">
-                          {name}
+                          {addons}
                         </Typography>
                       </Typography>
                     }

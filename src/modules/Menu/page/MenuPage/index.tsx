@@ -1,13 +1,14 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
-import PageGuard from '@/modules/User/components/PageGuard';
+import { UserType } from '@/modules/User/api/dto';
+import withGuard from '@/modules/User/hoc/withGuard';
 
 import { MenuApi } from '../../api';
 import { Menu } from '../../api/dto';
 import MenuList from '../../components/MenuList';
 
-const MenuPage = () => {
+const MenuPage = withGuard(() => {
   const params = useParams<{ id: string }>();
   const { id: restaurantId } = params;
 
@@ -22,11 +23,7 @@ const MenuPage = () => {
 
   if (!menu) return null;
 
-  return (
-    <PageGuard allowCustomer>
-      <MenuList menu={menu} />
-    </PageGuard>
-  );
-};
+  return <MenuList menu={menu} />;
+}, [UserType.Customer]);
 
 export default MenuPage;

@@ -1,5 +1,6 @@
-import { Chip, Dialog, Divider, Link, Paper, Stack, Typography } from '@mui/material';
+import { Chip, Dialog, Divider, Paper, Stack, Typography } from '@mui/material';
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 import { MenuApi } from '@/modules/Menu/api';
 import { Menu } from '@/modules/Menu/api/dto';
@@ -11,11 +12,11 @@ import { RandomModalProps } from './types';
 const RandomModal = ({ open, onClose, restaurant }: RandomModalProps) => {
   const [menu, setMenu] = useState<Menu>();
 
-  const handleSubmit = async (data: number[]) => {
-    setMenu(await MenuApi.random(data));
-  };
-
   if (!restaurant) return null;
+
+  const handleSubmit = async (data: number[]) => {
+    setMenu(await MenuApi.random(restaurant.id, data));
+  };
 
   const { imageUrl } = restaurant;
 
@@ -30,7 +31,7 @@ const RandomModal = ({ open, onClose, restaurant }: RandomModalProps) => {
         <Typography variant="h5" sx={{ textAlign: 'center' }} color="priamry">
           Random Result
         </Typography>
-        <Link href={`/restaurants/${restaurant.id}`}>
+        <Link to={`/restaurants/${restaurant.id}`}>
           <Paper
             sx={{
               height: '150px',
@@ -47,7 +48,7 @@ const RandomModal = ({ open, onClose, restaurant }: RandomModalProps) => {
                 position: 'absolute',
                 top: 0,
                 background: 'linear-gradient(to bottom, rgba(0,0,0,0.5), rgba(0,0,0,0))',
-                height: '50px',
+                height: '100px',
               }}
             />
             <Typography variant="h5" sx={{ position: 'absolute', top: 0, mx: 1, my: 0.5 }} color="white">
@@ -76,7 +77,11 @@ const RandomModal = ({ open, onClose, restaurant }: RandomModalProps) => {
             <Typography variant="h6" sx={{ textAlign: 'center', mt: 1 }}>
               Don't know what to eat?
             </Typography>
-            <RandomForm fetchTypes={MenuApi.getTypes} handleSubmit={handleSubmit} label="Menu" />
+            <RandomForm
+              fetchTypes={() => MenuApi.getTypesByRestaurantId(restaurant.id)}
+              handleSubmit={handleSubmit}
+              label="Menu"
+            />
           </>
         )}
       </Stack>

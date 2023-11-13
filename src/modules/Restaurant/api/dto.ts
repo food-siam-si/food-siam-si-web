@@ -29,6 +29,13 @@ export interface UpdateRestaurantRequest {
   isInService: boolean;
 }
 
+export interface RandomRestaurantRequest {
+  restaurantTypeIds: number[];
+  currentLat?: number;
+  currentLong?: number;
+  maxDistanceKm?: number;
+}
+
 export interface RestaurantType {
   id: number;
   name: string;
@@ -44,4 +51,5 @@ export interface Restaurant {
   averagePrice: AveragePrice;
   imageUrl: string;
   restaurantType: RestaurantType[];
+  rating: number;
 }

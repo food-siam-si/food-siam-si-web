@@ -1,5 +1,6 @@
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import LogoutIcon from '@mui/icons-material/Logout';
-import { AppBar, Container, IconButton, Toolbar, Typography } from '@mui/material';
+import { AppBar, Container, IconButton, Stack, Toolbar, Typography } from '@mui/material';
 import { PropsWithChildren } from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -21,9 +22,13 @@ const Layout = ({ children }: PropsWithChildren) => {
           <div style={{ flexGrow: 1 }} />
 
           {user && (
-            <IconButton sx={{ color: 'white' }} onClick={reset}>
-              <LogoutIcon />
-            </IconButton>
+            <Stack direction="row" alignItems="center" gap={1}>
+              <AccountCircleIcon />
+              <Typography color="white">{user.username}</Typography>
+              <IconButton sx={{ color: 'white' }} onClick={reset}>
+                <LogoutIcon />
+              </IconButton>
+            </Stack>
           )}
         </Toolbar>
       </AppBar>

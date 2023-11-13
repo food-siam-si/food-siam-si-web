@@ -12,16 +12,16 @@ import DetailChip from '../DetailChip';
 const RestaurantSection = (data: Restaurant) => {
   const theme = useTheme();
   const isDesktop = useMediaQuery(theme.breakpoints.up('sm'));
-  const { name, restaurantType, description, locationLat, locationLong, phoneNumber, averagePrice } = data;
+  const { name, restaurantType, description, locationLat, locationLong, phoneNumber, averagePrice, rating } = data;
   const mapLink = `https://www.google.com/maps/search/?api=1&query=${locationLat},${locationLong}`;
   return (
     <CardContent>
       <Stack direction="row" spacing={2} alignItems="center" sx={{ mb: 0.5 }}>
-        <Typography variant="h4" component="div" sx={{ flexGrow: 1 }}>
+        <Typography variant="h4" component="div" sx={{ flexGrow: 1, overflowWrap: 'break-word' }}>
           {name}
         </Typography>
         {isDesktop ? (
-          <Button variant="contained" startIcon={<MapIcon />} href={mapLink}>
+          <Button variant="contained" startIcon={<MapIcon />} href={mapLink} sx={{ flexShrink: 0 }}>
             Open Map
           </Button>
         ) : (
@@ -49,7 +49,7 @@ const RestaurantSection = (data: Restaurant) => {
           </Typography>
         }
       >
-        <DetailChip label="Rating" Icon={StarRoundedIcon} value="5" />
+        {rating >= 1 && <DetailChip label="Rating" Icon={StarRoundedIcon} value={rating.toFixed(2)} />}
         <DetailChip label="Average Price" Icon={AttachMoneyRoundedIcon} value={parseAveragePrice(averagePrice)} />
         <DetailChip label="Phone Number" Icon={PhoneRoundedIcon} value={phoneNumber} />
       </Stack>
@@ -59,7 +59,7 @@ const RestaurantSection = (data: Restaurant) => {
         ))}
       </Stack>
 
-      <Typography variant="body2" color="text.secondary">
+      <Typography variant="body2" color="text.secondary" sx={{ overflowWrap: 'break-word' }}>
         {description}
       </Typography>
     </CardContent>

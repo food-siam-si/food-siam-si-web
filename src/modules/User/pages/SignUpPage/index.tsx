@@ -1,6 +1,7 @@
 import { Button, Link, Paper, Stack, Typography } from '@mui/material';
 import { FormContainer, RadioButtonGroup, TextFieldElement } from 'react-hook-form-mui';
 import { Navigate } from 'react-router-dom';
+import { Link as RRDLink } from 'react-router-dom';
 
 import { UserType } from '../../api/dto';
 import { useUser } from '../../context/userContext';
@@ -46,7 +47,10 @@ const SignUpPage = () => {
         </FormContainer>
       </Paper>
       <Typography>
-        Already have an account? <Link href="/login">Sign In</Link>
+        Already have an account?{' '}
+        <Link to="/login" component={RRDLink}>
+          Sign In
+        </Link>
       </Typography>
     </>
   );

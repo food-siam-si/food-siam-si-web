@@ -8,7 +8,7 @@ const LandingPage = () => {
 
   if (!user) {
     return <Navigate to="/login" replace={true} />;
-  } else if (user.role === UserType.Owner) {
+  } else if (user.type === UserType.Owner) {
     return <Navigate to="/manage/restaurant" replace={true} />;
   } else {
     return <Navigate to="/random" replace={true} />;

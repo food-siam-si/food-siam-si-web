@@ -11,7 +11,7 @@ const MenuCard = (menu: Menu) => {
         <Stack height="100%">
           <Typography variant="h6">{title}</Typography>
           <Typography variant="body2" color="text.secondary" sx={{ flexGrow: 1 }}>
-            {description.length > 50 ? description.slice(0, 50) + '...' : description.length}
+            {description.length > 50 ? description.slice(0, 50) + '...' : description}
           </Typography>
           <Typography sx={{ textAlign: 'right' }} color="primary">
             {menu.price} ฿
