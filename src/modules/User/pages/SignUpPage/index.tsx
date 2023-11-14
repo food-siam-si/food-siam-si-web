@@ -46,7 +46,7 @@ const SignUpPage = () => {
           </Stack>
         </FormContainer>
       </Paper>
-      <Typography>
+      <Typography color="text.primary">
         Already have an account?{' '}
         <Link to="/login" component={RRDLink}>
           Sign In
