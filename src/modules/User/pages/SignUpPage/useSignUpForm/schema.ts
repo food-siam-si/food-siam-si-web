@@ -8,6 +8,7 @@ export const signUpFromSchema = yup.object().shape({
   password: yup.string().required(),
   confirmPassword: yup
     .string()
+    .min(8)
     .oneOf([yup.ref('password'), undefined], 'passwords not match')
     .required(),
   userType: yup.mixed<UserType>().oneOf(Object.values(UserType)).required(),

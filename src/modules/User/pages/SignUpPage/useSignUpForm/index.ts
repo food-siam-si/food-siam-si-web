@@ -16,10 +16,14 @@ const useSignUpForm = () => {
   const navigate = useNavigate();
 
   const onSubmit = async (data: ISignUpFormSchema) => {
-    const { confirmPassword: _, ...rest } = data;
-    await AuthApi.create(rest);
-    toast.success('Sign up successfully');
-    navigate('/login');
+    try {
+      const { confirmPassword: _, ...rest } = data;
+      await AuthApi.create(rest);
+      toast.success('Sign up successfully');
+      navigate('/login');
+    } catch (e) {
+      /* empty */
+    }
   };
 
   return {

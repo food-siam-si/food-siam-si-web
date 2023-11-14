@@ -22,11 +22,15 @@ const useLoginForm = () => {
   const { refetch } = useUser();
 
   const onSubmit = async (data: ILoginFormSchema) => {
-    const res = await AuthApi.login(data);
-    if (!res) return;
-    localStorage.setItem('token', res.token);
-    await refetch();
-    navigate('/');
+    try {
+      const res = await AuthApi.login(data);
+      if (!res) return;
+      localStorage.setItem('token', res.token);
+      await refetch();
+      navigate('/');
+    } catch (e) {
+      /* empty */
+    }
   };
 
   return {

@@ -6,7 +6,7 @@ import { handleError } from '@/common/utils/handleError';
 import { type CreateUserRequest, type GetCurrentUserResponse, type LoginRequest, type LoginResponse } from './dto';
 
 export class AuthApi {
-  @handleError({ overrideMessage: { 401: 'email or password is incorrect' } })
+  @handleError({ overrideMessage: { 401: 'email or password is incorrect' }, throwError: true })
   static async login(data: LoginRequest): Promise<LoginResponse> {
     const res = await apiClient.post('/user/login', data);
     return {
@@ -27,7 +27,7 @@ export class AuthApi {
     }
   }
 
-  @handleError()
+  @handleError({ throwError: true })
   static async create(data: CreateUserRequest): Promise<void> {
     await apiClient.post('/user/register', data);
   }
